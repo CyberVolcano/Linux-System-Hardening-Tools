@@ -69,3 +69,22 @@ service --status-all | grep "rdp"
 faillog -m 8
 
 sysctl --system
+
+find / -name '*.mp3' -type f -not -path "/usr/*"
+find / -name '*.mov' -type f -not -path "/usr/*"
+find / -name '*.mp4' -type f -not -path "/usr/*"
+find / -name '*.avi' -type f -not -path "/usr/*"
+find / -name '*.mpg' -type f -not -path "/usr/*"
+find / -name '*.mpeg' -type f -not -path "/usr/*"
+find / -name '*.flac' -type f -not -path "/usr/*"
+find / -name '*.m4a' -type f -not -path "/usr/*"
+find / -name '*.flv' -type f -not -path "/usr/*"
+find / -name '*.ogg' -type f -not -path "/usr/share/*"
+find / -name '*.gif' -type f -not -path "/usr/*"
+find / -name '*.png' -type f -not -path "/usr/*" -not -path "/lib/"
+find / -name '*.jpg' -type f -not -path "/usr/*"
+find / -name '*.jpeg' -type f -not -path "/usr/*"
+
+# ^ Work in progress on removing false red alarms
+
+mv -f /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
