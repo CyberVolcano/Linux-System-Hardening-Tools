@@ -1,4 +1,4 @@
-#
+auth required pam_tally.so per_user magic_root onerr=fail
 # /etc/pam.d/common-auth - authentication settings common to all services
 #
 # This file is included from other service-specific PAM config files,
