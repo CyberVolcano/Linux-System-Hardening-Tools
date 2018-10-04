@@ -87,4 +87,5 @@ find / -name '*.jpeg' -type f -not -path "/usr/*"
 
 # ^ Work in progress on removing false red alarms
 
-mv -f /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
+#cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
+cp -f $PWD/Desktop/CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
