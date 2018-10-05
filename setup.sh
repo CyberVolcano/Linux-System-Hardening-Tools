@@ -1,5 +1,5 @@
-touch $PWD/Desktop/list_of_users
+touch /home/$USER/Desktop/list_of_users
 
-touch $PWD/Desktop/approved_users
+touch /home/$USER/Desktop/approved_users
 
-touch $PWD/Desktop/results
+touch /home/$USER/Desktop/results
