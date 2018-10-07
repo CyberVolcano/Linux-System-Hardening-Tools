@@ -1,5 +1,5 @@
-touch /home/$USER/Desktop/list_of_users
+touch /home/$USER/Desktop/CyberPatriot-Linux-Tools/list_of_users
 
-touch /home/$USER/Desktop/approved_users
+touch /home/$USER/Desktop/CyberPatriot-Linux-Tools/approved_users
 
-touch /home/$USER/Desktop/results
+touch /home/$USER/Desktop/CyberPatriot-Linux-Tools/results
