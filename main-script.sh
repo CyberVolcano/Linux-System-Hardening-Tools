@@ -4,12 +4,32 @@
 
 #BACKUP cat /etc/passwd | grep "/bin/bash" |  cut -f1 -d":" > /root/Desktop/list_of_users
 
+#Clears IPV4
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
+
+#Clears IPV6
+ip6tables -P INPUT ACCEPT
+ip6tables -P FORWARD ACCEPT
+ip6tables -P OUTPUT ACCEPT
+ip6tables -t nat -F
+ip6tables -t mangle -F
+ip6tables -F
+ip6tables -X
+
+
 
 iptables -A INPUT -p all -s localhost  -i eth0 -j DROP
 iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
 iptables -A INPUT -f -j DROP
+
 
 ufw enable
 
