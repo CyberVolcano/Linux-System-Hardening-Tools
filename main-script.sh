@@ -48,9 +48,9 @@ ufw deny 139 # SAMBA
 ufw status
 
 
-cat /etc/passwd | grep "/home" |  cut -f1 -d":" > $PWD/Desktop/list_of_users
+cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
-input="$PWD/Desktop/list_of_users"
+input="/CyberPatriot-Linux-Tools/list_of_users"
 
 while IFS= read -r var
 do
@@ -108,4 +108,5 @@ find / -name '*.jpeg' -type f -not -path "/usr/*"
 # ^ Work in progress on removing false red alarms
 
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
-cp -f $PWD/Desktop/CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+
