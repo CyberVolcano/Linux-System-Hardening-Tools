@@ -72,7 +72,6 @@ else
 	sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'
 fi
 
-lightdm restart
 
 echo "Searching for world writable files"
 
@@ -110,3 +109,21 @@ find / -name '*.jpeg' -type f -not -path "/usr/*"
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
 cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 
+#!/bin/bash
+ 
+read -r -p "Are You Sure? [Y/n] " input
+ 
+case $input in
+    [yY][eE][sS]|[yY])
+ lightdm restart
+ ;;
+ 
+    [nN][oO]|[nN])
+ echo "Script Stopped"
+       ;;
+ 
+    *)
+ echo "Invalid input..."
+ exit 1
+ ;;
+esac
