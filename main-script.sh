@@ -85,9 +85,9 @@ service --status-all | grep "ftp"
 service --status-all | grep "ssh"
 service --status-all | grep "rdp"
 
-faillog -m 8
+#faillog -m 8
 
-sysctl --system
+#sysctl --system
 
 find / -name '*.mp3' -type f -not -path "/usr/*"
 find / -name '*.mov' -type f -not -path "/usr/*"
@@ -107,23 +107,23 @@ find / -name '*.jpeg' -type f -not -path "/usr/*"
 # ^ Work in progress on removing false red alarms
 
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
-cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+#cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 
 #!/bin/bash
  
-read -r -p "Are You Sure? [Y/n] " input
+#read -r -p "Are You Sure? [Y/n] " input
  
-case $input in
-    [yY][eE][sS]|[yY])
- lightdm restart
- ;;
+#case $input in
+ #   [yY][eE][sS]|[yY])
+ #lightdm restart
+ #;;
  
-    [nN][oO]|[nN])
- echo "Script Stopped"
-       ;;
+ #   [nN][oO]|[nN])
+ #echo "Script Stopped"
+  #     ;;
  
-    *)
- echo "Invalid input..."
- exit 1
- ;;
-esac
+   # *)
+ #echo "Invalid input..."
+ #exit 1
+ #;;
+#esac
