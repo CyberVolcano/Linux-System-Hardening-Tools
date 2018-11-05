@@ -54,7 +54,7 @@ input="/CyberPatriot-Linux-Tools/list_of_users"
 
 while IFS= read -r var
 do
-  if [[ $(grep $var $PWD/Desktop/approved_users) ]]; then
+  if [[ $(grep $var /CyberPatriot-Linux-Tools/approved_users) ]]; then
     :
  else
     echo $var " is an unapproved user!"
