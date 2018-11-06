@@ -79,7 +79,7 @@ fi
 
 echo "Searching for world writable files"
 
-find /dir -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
+find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
 
 echo "PROMPT=no" >> /etc/sysconfig/init
 
@@ -93,20 +93,24 @@ service --status-all | grep "rdp"
 
 #sysctl --system
 
-find / -name '*.mp3' -type f -not -path "/usr/*"
-find / -name '*.mov' -type f -not -path "/usr/*"
-find / -name '*.mp4' -type f -not -path "/usr/*"
-find / -name '*.avi' -type f -not -path "/usr/*"
-find / -name '*.mpg' -type f -not -path "/usr/*"
-find / -name '*.mpeg' -type f -not -path "/usr/*"
-find / -name '*.flac' -type f -not -path "/usr/*"
-find / -name '*.m4a' -type f -not -path "/usr/*"
-find / -name '*.flv' -type f -not -path "/usr/*"
-find / -name '*.ogg' -type f -not -path "/usr/share/*"
-find / -name '*.gif' -type f -not -path "/usr/*"
-find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*"
-find / -name '*.jpg' -type f -not -path "/usr/*"
-find / -name '*.jpeg' -type f -not -path "/usr/*"
+echo"-----------------------" >> /CyberPatriot-Linux-Tools/results
+echo"UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
+echo"-----------------------" >> /CyberPatriot-Linux-Tools/results
+
+find / -name '*.mp3' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.mov' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.mp4' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.avi' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.mpg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.mpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.flac' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.m4a' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.flv' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.ogg' -type f -not -path "/usr/share/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.gif' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.jpg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
+find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 
 # ^ Work in progress on removing false red alarms
 
