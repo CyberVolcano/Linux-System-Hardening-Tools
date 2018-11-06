@@ -47,6 +47,9 @@ ufw deny 139 # SAMBA
 
 ufw status
 
+echo"-----------------" >> /CyberPatriot-Linux-Tools/results
+echo"UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
+echo"-----------------" >> /CyberPatriot-Linux-Tools/results
 
 cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
@@ -58,18 +61,19 @@ do
     :
  else
     echo $var " is an unapproved user!"
+    echo $var " is an unapproved user!" >> /CyberPatriot-Linux-Tools/results
  fi
 done < "$input"
 
 
 if [[ $(lsb_release -a| grep "Xenial") ]]; then
 
-	echo "Ubuntu 16 Detected"
-	sudo sh -c 'printf "[Seat:*]\nallow-guest=false\n" >/etc/lightdm/lightdm.conf.d/50-no-guest.conf'
+  echo "Ubuntu 16 Detected"
+  sudo sh -c 'printf "[Seat:*]\nallow-guest=false\n" >/etc/lightdm/lightdm.conf.d/50-no-guest.conf'
 else
 
-	echo "Ubuntu 14 Detected"
-	sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'
+  echo "Ubuntu 14 Detected"
+  sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'
 fi
 
 
@@ -100,7 +104,7 @@ find / -name '*.m4a' -type f -not -path "/usr/*"
 find / -name '*.flv' -type f -not -path "/usr/*"
 find / -name '*.ogg' -type f -not -path "/usr/share/*"
 find / -name '*.gif' -type f -not -path "/usr/*"
-find / -name '*.png' -type f -not -path "/usr/*" -not -path "/lib/"
+find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*"
 find / -name '*.jpg' -type f -not -path "/usr/*"
 find / -name '*.jpeg' -type f -not -path "/usr/*"
 
