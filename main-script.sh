@@ -85,17 +85,21 @@ echo "PROMPT=no" >> /etc/sysconfig/init
 
 awk -F: '($2 == "") {print}' /etc/shadow
 
-service --status-all | grep "ftp"
-service --status-all | grep "ssh"
-service --status-all | grep "rdp"
+echo "---------------------" >> /CyberPatriot-Linux-Tools/results
+echo "UNAPPROVED SERVICES!" >> /CyberPatriot-Linux-Tools/results
+echo "--------------------" >> /CyberPatriot-Linux-Tools/results
+
+service --status-all | grep "ftp" >> /CyberPatriot-Linux-Tools/results
+service --status-all | grep "ssh" >> /CyberPatriot-Linux-Tools/results
+service --status-all | grep "rdp" >> /CyberPatriot-Linux-Tools/results
 
 #faillog -m 8
 
 #sysctl --system
 
-echo"-----------------------" >> /CyberPatriot-Linux-Tools/results
-echo"UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
-echo"-----------------------" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
+echo "UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 
 find / -name '*.mp3' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 find / -name '*.mov' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
