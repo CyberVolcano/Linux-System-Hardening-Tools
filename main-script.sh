@@ -117,8 +117,15 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 # ^ Work in progress on removing false red alarms
 
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
-#cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+
+#Makes copies of old files
+cp -f /etc/ssh/sshd_config /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
+
+cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
+
 #!/bin/bash
  
 #read -r -p "Are You Sure? [Y/n] " input
