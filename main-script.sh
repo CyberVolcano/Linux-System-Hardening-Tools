@@ -63,17 +63,9 @@ do
  fi
 done < "$input"
 
+ 
 
-if [[ $(lsb_release -a| grep "Xenial") ]]; then
-
-  echo "Ubuntu 16 Detected"
-  sudo sh -c 'printf "[Seat:*]\nallow-guest=false\n" >/etc/lightdm/lightdm.conf.d/50-no-guest.conf'
-else
-
-  echo "Ubuntu 14 Detected"
-  sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" >/usr/share/lightdm/lightdm.conf.d/50-no-guest.conf'
-fi
-
+echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
 echo "Searching for world writable files"
 
