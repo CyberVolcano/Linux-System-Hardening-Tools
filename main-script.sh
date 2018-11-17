@@ -22,8 +22,6 @@ ip6tables -t mangle -F
 ip6tables -F
 ip6tables -X
 
-
-
 iptables -A INPUT -p all -s localhost  -i eth0 -j DROP
 iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
@@ -120,7 +118,7 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
 #cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
 #!/bin/bash
  
 #read -r -p "Are You Sure? [Y/n] " input
