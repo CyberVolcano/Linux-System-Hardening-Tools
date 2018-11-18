@@ -63,7 +63,6 @@ do
  fi
 done < "$input"
 
- 
 
 echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
@@ -106,8 +105,6 @@ find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*" >> /CyberPatriot-
 find / -name '*.jpg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 
-# ^ Work in progress on removing false red alarms
-
 #cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
 
 #Makes copies of old files
@@ -118,7 +115,7 @@ cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
 
-#!/bin/bash
+auditctl -e 1
  
 #read -r -p "Are You Sure? [Y/n] " input
  
