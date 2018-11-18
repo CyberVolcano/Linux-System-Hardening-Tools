@@ -115,6 +115,7 @@ cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
 
+#runs auditctl auditing
 auditctl -e 1
  
 #read -r -p "Are You Sure? [Y/n] " input
