@@ -112,7 +112,6 @@ cp -f /etc/ssh/sshd_config /CyberPatriot-Linux-Tools/old_files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
 
 cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
 
 #runs auditctl auditing
