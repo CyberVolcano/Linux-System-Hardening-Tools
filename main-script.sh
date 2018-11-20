@@ -105,14 +105,15 @@ find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*" >> /CyberPatriot-
 find / -name '*.jpg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 
-#cp -f $PWD/Desktop /etc/sysctl.d/10-network-security.conf /etc/sysctl.d/10-network-security.conf-old
-
 #Makes copies of old files
 cp -f /etc/ssh/sshd_config /CyberPatriot-Linux-Tools/old_files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/sysctl.d/10-network
 
 cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 
 #runs auditctl auditing
 auditctl -e 1
