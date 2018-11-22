@@ -4,6 +4,25 @@
 
 #BACKUP cat /etc/passwd | grep "/bin/bash" |  cut -f1 -d":" > /root/Desktop/list_of_users
 
+service_confirmation
+
+read -r -p "Are You Sure? [Y/n] " input
+case $input in
+    [yY][eE][sS]|[yY])
+ echo "Yes"
+ exit
+ ;;
+ 
+    [nN][oO]|[nN])
+ echo "No"
+       ;;
+ 
+    *)
+ echo "Invalid input..."
+ exit 1
+ ;;
+esac
+
 #Clears IPV4
 iptables -P INPUT ACCEPT
 iptables -P FORWARD ACCEPT
@@ -109,11 +128,13 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 cp -f /etc/ssh/sshd_config /CyberPatriot-Linux-Tools/old_files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
 cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
-cp -f /etc/sysctl.d/10-network
+cp -f /etc/sysctl.d/10-network-security.conf /CyberPatriot-Linux-Tools/old_files
 
 cp -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sshd_config /etc/ssh/sshd_config
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
+cp -f / CyberPatriot-Linux-Tools/secure-configurations/etc-sysctl.d/10-network-security.conf
+
+#cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 
 #runs auditctl auditing
 auditctl -e 1
