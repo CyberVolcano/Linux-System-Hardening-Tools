@@ -45,9 +45,9 @@ ufw deny 139 # SAMBA
 
 ufw status
 
-echo"-----------------" >> /CyberPatriot-Linux-Tools/results
-echo"UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
-echo"-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
 cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
@@ -109,13 +109,14 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
 cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
 
-mv -f /CyberPatriot-Linux-Tools-master/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-mv -f / CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-
+mv -f /CyberPatriot-Linux-Tools/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+cp -f / CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
+#^^^ lmao i dont know why it doesnt work with mv but ok
 #cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 
 #runs auditctl auditing
-auditctl -e 1
+#
+#auditctl -e 1
  
 #read -r -p "Are You Sure? [Y/n] " input
  
