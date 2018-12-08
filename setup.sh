@@ -1,4 +1,3 @@
-mkdir /CyberPatriot-Linux-Tools
 
 touch /CyberPatriot-Linux-Tools/list_of_users
 
