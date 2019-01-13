@@ -71,7 +71,7 @@ echo "PROMPT=no" >> /etc/sysconfig/init
 
 awk -F: '($2 == "") {print}' /etc/shadow
 
-cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/sysctl.conf /etc/sysctl.conf
 
 sysctl -p
@@ -101,5 +101,5 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-pas
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 #runs auditctl auditing
 
-apt-get install auditd
+apt-get install auditd -y
 auditctl -e 1
