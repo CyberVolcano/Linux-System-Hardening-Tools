@@ -28,7 +28,6 @@ iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
 iptables -A INPUT -f -j DROP
 
-
 ufw enable
 
 ufw logging high
@@ -68,23 +67,14 @@ echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
 echo "Searching for world writable files"
 
-find / -xdev -type d \( -perm -0002 -a ! -perm -1000 \) -print
-
 echo "PROMPT=no" >> /etc/sysconfig/init
 
 awk -F: '($2 == "") {print}' /etc/shadow
 
-echo "---------------------" >> /CyberPatriot-Linux-Tools/results
-echo "UNAPPROVED SERVICES!" >> /CyberPatriot-Linux-Tools/results
-echo "--------------------" >> /CyberPatriot-Linux-Tools/results
+cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/sysctl.conf /etc/sysctl.conf
 
-service --status-all | grep "ftp" >> /CyberPatriot-Linux-Tools/results
-service --status-all | grep "ssh" >> /CyberPatriot-Linux-Tools/results
-service --status-all | grep "rdp" >> /CyberPatriot-Linux-Tools/results
-
-#faillog -m 8
-
-#sysctl --system
+sysctl -p
 
 echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
@@ -107,29 +97,9 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 #ok
 #Makes copies of old files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
-cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files
-
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d /etc/pam.d/common-password
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-#^^^ lmao i dont know why it doesnt work with mv but ok
-#cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-
 #runs auditctl auditing
-#
-#auditctl -e 1
- 
-#read -r -p "Are You Sure? [Y/n] " input
- 
-#case $input in
- #   [yY][eE][sS]|[yY])
- #lightdm restart
- #;;
- 
- #   [nN][oO]|[nN])
- #echo "Script Stopped"
-  #     ;;
- 
-   # *)
- #echo "Invalid input..."
- #exit 1
- #;;
+
+apt-get install auditd
+auditctl -e 1
