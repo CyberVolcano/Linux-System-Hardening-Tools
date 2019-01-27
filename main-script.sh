@@ -69,9 +69,7 @@ echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
 awk -F: '($2 == "") {print}' /etc/shadow
 
-cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
 
-sysctl -p
 
 echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
@@ -94,9 +92,22 @@ find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/r
 #ok
 #Makes copies of old files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/pam.d/common-auth /CyberPatriot-Linux-Tools/old_files
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-#runs auditctl auditing
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-auth /etc/pam.d/common-auth
+#Account lockout policy
+sudo faillog -m 10
 
+cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
+sysctl -p
+
+cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
+
+#setting up pam-cracklib
+apt-get install libpam-cracklib -y
+
+#runs auditctl auditing
 apt-get install auditd -y
 auditctl -e 1

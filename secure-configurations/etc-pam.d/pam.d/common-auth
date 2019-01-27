@@ -1,4 +1,5 @@
 auth required pam_tally.so per_user magic_root onerr=fail
+#
 # /etc/pam.d/common-auth - authentication settings common to all services
 #
 # This file is included from other service-specific PAM config files,
@@ -22,5 +23,4 @@ auth	requisite			pam_deny.so
 # since the modules above will each just jump around
 auth	required			pam_permit.so
 # and here are more per-package modules (the "Additional" block)
-auth	optional			pam_cap.so 
 # end of pam-auth-update config

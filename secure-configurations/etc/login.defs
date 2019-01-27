@@ -52,7 +52,7 @@ LOG_UNKFAIL_ENAB	no
 #
 # Enable logging of successful logins
 #
-LOG_OK_LOGINS		yes
+LOG_OK_LOGINS		no
 
 #
 # Enable "syslog" logging of su activity - in addition to sulog file logging.
@@ -185,7 +185,7 @@ GID_MAX			60000
 # in of 3 retries. However, this is a safe fallback in case you are using
 # an authentication module that does not enforce PAM_MAXTRIES.
 #
-LOGIN_RETRIES		5
+LOGIN_RETRIES		10
 
 #
 # Max time in seconds for login
@@ -336,6 +336,3 @@ ENCRYPT_METHOD SHA512
 # LOGIN_STRING
 # NO_PASSWORD_CONSOLE
 # QMAIL_DIR
-
-
-
