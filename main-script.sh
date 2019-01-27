@@ -111,3 +111,8 @@ apt-get install libpam-cracklib -y
 #runs auditctl auditing
 apt-get install auditd -y
 auditctl -e 1
+
+echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "CRONTABS FOR USERS!" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done >> /CyberPatriot-Linux-Tools/results
