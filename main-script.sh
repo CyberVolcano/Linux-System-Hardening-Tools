@@ -48,7 +48,7 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
-cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
+cat /etc/passwd | grep "/bin/bash" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
 input="/CyberPatriot-Linux-Tools/list_of_users"
 
@@ -64,8 +64,6 @@ done < "$input"
 
 
 echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
-
-echo "Searching for world writable files"
 
 #echo "PROMPT=no" >> /etc/sysconfig/init
 
