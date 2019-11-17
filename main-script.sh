@@ -34,13 +34,13 @@ ufw logging high
 
 ufw status
 
-ufw deny 23 # TELNET
-ufw deny 22 # SSH
-ufw deny 21 # FTP
-ufw deny 515 # CUPS
-ufw deny 80 # APACHE
-ufw deny 3389 # REMOTE DESKTOP PROTOCOL
-ufw deny 139 # SAMBA
+#ufw deny 23 # TELNET
+#ufw deny 22 # SSH
+#ufw deny 21 # FTP
+#ufw deny 515 # CUPS
+#ufw deny 80 # APACHE
+#ufw deny 3389 # REMOTE DESKTOP PROTOCOL
+#ufw deny 139 # SAMBA
 
 ufw status
 
