@@ -33,7 +33,7 @@ ufw enable
 ufw logging high
 
 ufw status
-
+#FINISHED RULE 49
 sudo apt-get install aide
 
 #ufw deny 23 # TELNET
