@@ -43,6 +43,32 @@ sudo apt-get install aide
 #ufw deny 80 # APACHE
 #ufw deny 3389 # REMOTE DESKTOP PROTOCOL
 #ufw deny 139 # SAMBA
+#pwck -r CHECK FOR HOMEDIR
+echo "editing files for apt and updates"
+grep -i allowunauth /etc/apt/apt.conf.d/* >> /CyberPatriot-Linux-Tools/results
+echo "Unattended-Upgrade::Remove-Unused-Dependencies \"true\";" > /etc/apt/apt.conf.d/50unattended-upgrades
+awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd >> /CyberPatriot-Linux-Tools/results
+#DUPLICATE UIDS ^^ 
+awk -F: '$3 == 0 {print $1}' /etc/passwd # other kids have root
+sudo find / -perm -002 -type f -exec ls -ld {} \; | more
+#73 check out
+#DISA
+echo “install usb-storage /bin/true” >> /etc/modprobe.d/DISASTIG.conf
+sudo systemctl stop autofs
+
+#APPARMOR
+apt-get install libpam-apparmor
+systemctl enable apparmor.service
+systemctl start apparmor.service
+
+#CTRL ALT DEL
+sudo systemctl mask ctrl-alt-del.target
+sudo systemctl daemon-reload
+touch cat /etc/dconf/db/local.d/00-disable-CAD
+echo "[org/gnome/settings-daemon/plugins/media-keys]"
+echo >> "logout=’’"
+#check usres have ome directory
+
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "SHOSTS FOUND" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
