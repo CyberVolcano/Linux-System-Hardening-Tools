@@ -46,15 +46,26 @@ sudo chgrp syslog /var/log #VAR LOG IS OWNED BY SYSLOG
 sudo chmod 0770 /var/log #Change VAR/LOG to authorized personel
 sudo chgrp adm /var/log/syslog
 
+#Makes copies of old files
+cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
+cp -f /etc/pam.d/common-auth /CyberPatriot-Linux-Tools/old_files
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-auth /etc/pam.d/common-auth
+#Account lockout policy
+sudo faillog -m 10
 
-#ufw deny 23 # TELNET
-#ufw deny 22 # SSH
-#ufw deny 21 # FTP
-#ufw deny 515 # CUPS
-#ufw deny 80 # APACHE
-#ufw deny 3389 # REMOTE DESKTOP PROTOCOL
-#ufw deny 139 # SAMBA
-#pwck -r CHECK FOR HOMEDIR
+cp -f /etc/security/limits.conf /CyberPatriot-Linux-Tools/old_files/
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
+
+cp -f /etc/security/pwquality.conf /CyberPatriot-Linux-Tools/old_files/
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/pwquality.conf /etc/security/pwquality.conf
+
+cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
+sysctl -p
+
+cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
 
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "FINDING WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
@@ -136,14 +147,6 @@ echo "This potentially means a user can login without a password"
 
 ufw status
 
-echo "-----------------" >> /CyberPatriot-Linux-Tools/results
-echo "To be locked?" >> /CyberPatriot-Linux-Tools/results
-echo "-----------------" >> /CyberPatriot-Linux-Tools/results
-
-sudo cut -d: -f2 /etc/shadow >> /CyberPatriot-Linux-Tools/results
-
-echo "Password hashes ! or * indicate inactive accounts not available for logon and are not evaluated. If any interactive user password hash does not begin with $6, this is a finding."
-
 echo "Installing Vlock"
 
 sudo apt-get install vlock
@@ -206,20 +209,6 @@ find / -type f -name "*.png" ! -path "/lib/*" ! -path "/usr/*" >> /CyberPatriot-
 find / -name '*.jpg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 find / -name '*.jpeg' -type f -not -path "/usr/*" >> /CyberPatriot-Linux-Tools/results
 #ok
-#Makes copies of old files
-cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
-cp -f /etc/pam.d/common-auth /CyberPatriot-Linux-Tools/old_files
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-auth /etc/pam.d/common-auth
-#Account lockout policy
-sudo faillog -m 10
-
-cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-sysctl -p
-
-cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
 
 #setting up pam-cracklib
 apt-get remove telnetd
