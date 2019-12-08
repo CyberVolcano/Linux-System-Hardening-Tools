@@ -62,6 +62,7 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/pwquality.con
 
 cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
+
 sysctl -p
 
 cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
@@ -70,6 +71,7 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "FINDING WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+
 sudo find / -perm -2 -type d ! -group sys ! -group root ! -group bin -exec ls -lLd {} \; >> /CyberPatriot-Linux-Tools/results
 echo "crash & metrics is ok">> /CyberPatriot-Linux-Tools/results
 
@@ -97,7 +99,7 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
-sudo find / -perm -002 -type f -exec ls -ld {} \; | more
+sudo find / -perm -002 -type f -exec ls -ld {} \; >> /CyberPatriot-Linux-Tools/results
 #73 check out
 #DISA
 # TURNS OFF USB 
@@ -123,14 +125,13 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "SHOSTS FOUND" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
+find / -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
+find / -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
+
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "APT Packages can be allowed unauthenticated below" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 grep -i allowunauth /etc/apt/apt.conf.d/* >> /CyberPatriot-Linux-Tools/results
-
-find / -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
-find / -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
-
 
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "Sudo Misconfigurations:" >> /CyberPatriot-Linux-Tools/results
@@ -184,11 +185,7 @@ done < "$input"
 
 echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
-#echo "PROMPT=no" >> /etc/sysconfig/init
-
 awk -F: '($2 == "") {print}' /etc/shadow
-
-
 
 echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
@@ -217,4 +214,5 @@ apt-get remove rsh-server
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CRONTABS FOR USERS!" >> /CyberPatriot-Linux-Tools/results
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+
 for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done >> /CyberPatriot-Linux-Tools/results
