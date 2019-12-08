@@ -33,8 +33,19 @@ ufw enable
 ufw logging high
 
 ufw status
-#FINISHED RULE 49
+
+systemctl disable kdump.service #takes up alot of memory, may result in crash #76
+
+apt-get install libpam-cracklib -y
+apt-get install auditd -y
+auditctl -e 1
 sudo apt-get install aide
+
+sudo chown root /var/log #ROOT OWNS LOG
+sudo chgrp syslog /var/log #VAR LOG IS OWNED BY SYSLOG
+sudo chmod 0770 /var/log #Change VAR/LOG to authorized personel
+sudo chgrp adm /var/log/syslog
+
 
 #ufw deny 23 # TELNET
 #ufw deny 22 # SSH
@@ -44,16 +55,43 @@ sudo apt-get install aide
 #ufw deny 3389 # REMOTE DESKTOP PROTOCOL
 #ufw deny 139 # SAMBA
 #pwck -r CHECK FOR HOMEDIR
-echo "editing files for apt and updates"
+
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "FINDING WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+sudo find / -perm -2 -type d ! -group sys ! -group root ! -group bin -exec ls -lLd {} \; >> /CyberPatriot-Linux-Tools/results
+echo "crash & metrics is ok">> /CyberPatriot-Linux-Tools/results
+
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "Configuring Updates" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+
 grep -i allowunauth /etc/apt/apt.conf.d/* >> /CyberPatriot-Linux-Tools/results
+
 echo "Unattended-Upgrade::Remove-Unused-Dependencies \"true\";" > /etc/apt/apt.conf.d/50unattended-upgrades
+
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "DUPLICATE UIDS" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+
 awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd >> /CyberPatriot-Linux-Tools/results
-#DUPLICATE UIDS ^^ 
-awk -F: '$3 == 0 {print $1}' /etc/passwd # other kids have root
+
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "CHECKING FOR OTHER UID OF 0" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+
+awk -F: '$3 == 0 {print $1}' /etc/passwd
+
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+echo "WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
+echo "-----------------" >> /CyberPatriot-Linux-Tools/results
+
 sudo find / -perm -002 -type f -exec ls -ld {} \; | more
 #73 check out
 #DISA
-echo “install usb-storage /bin/true” >> /etc/modprobe.d/DISASTIG.conf
+# TURNS OFF USB 
+echo “install usb-storage /bin/true” >> /etc/modprobe.d/usb-storage.conf
+
 sudo systemctl stop autofs
 
 #APPARMOR
@@ -65,9 +103,10 @@ systemctl start apparmor.service
 sudo systemctl mask ctrl-alt-del.target
 sudo systemctl daemon-reload
 touch cat /etc/dconf/db/local.d/00-disable-CAD
-echo "[org/gnome/settings-daemon/plugins/media-keys]"
-echo >> "logout=’’"
-#check usres have ome directory
+
+#echo "[org/gnome/settings-daemon/plugins/media-keys]"
+#echo >> "logout=’’"
+#Check if GNOME is installed
 
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "SHOSTS FOUND" >> /CyberPatriot-Linux-Tools/results
@@ -183,11 +222,8 @@ cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
 
 #setting up pam-cracklib
-apt-get install libpam-cracklib -y
-
-#runs auditctl auditing
-apt-get install auditd -y
-auditctl -e 1
+apt-get remove telnetd
+apt-get remove rsh-server
 
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CRONTABS FOR USERS!" >> /CyberPatriot-Linux-Tools/results

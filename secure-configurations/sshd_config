@@ -39,7 +39,7 @@ RhostsRSAAuthentication no
 # similar for protocol version 2
 HostbasedAuthentication no
 # Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
-#IgnoreUserKnownHosts yes
+IgnoreUserKnownHosts yes
 
 # To enable empty passwords, change to yes (NOT RECOMMENDED)
 PermitEmptyPasswords no
@@ -47,7 +47,7 @@ PermitUserEnvironment no
 # Change to yes to enable challenge-response passwords (beware issues with
 # some PAM modules and threads)
 ChallengeResponseAuthentication no
-
+Compression no
 # Change to no to disable tunnelled clear text passwords
 #PasswordAuthentication yes
 
@@ -61,7 +61,7 @@ ChallengeResponseAuthentication no
 #GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
-#X11Forwarding yes
+X11Forwarding yes
 #X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
@@ -88,5 +88,7 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 UsePAM yes
 
 MaxAuthTries 4
-ClientAliveInterval 300
+ClientAliveInterval 600
 ClientAliveCountMax 0
+
+
