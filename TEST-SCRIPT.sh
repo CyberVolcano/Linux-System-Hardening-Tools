@@ -41,10 +41,11 @@ apt-get install auditd -y
 auditctl -e 1
 sudo apt-get install aide
 
-sudo chown root /var/log #ROOT OWNS LOG
-sudo chgrp syslog /var/log #VAR LOG IS OWNED BY SYSLOG
-sudo chmod 0770 /var/log #Change VAR/LOG to authorized personel
-sudo chgrp adm /var/log/syslog
+#sudo chown root /var/log #ROOT OWNS LOG
+#sudo chgrp syslog /var/log #VAR LOG IS OWNED BY SYSLOG
+#sudo chmod 0770 /var/log #Change VAR/LOG to authorized personel
+#sudo chgrp adm /var/log/syslog
+#LAST MINUTE CONFIGS
 
 #Makes copies of old files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
