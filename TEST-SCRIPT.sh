@@ -100,7 +100,7 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
-sudo find / -perm -002 -type f -exec ls -ld {} \; >> /CyberPatriot-Linux-Tools/results
+#sudo find / -perm -002 -type f -exec ls -ld {} \; >> /CyberPatriot-Linux-Tools/results
 #73 check out
 #DISA
 # TURNS OFF USB 
