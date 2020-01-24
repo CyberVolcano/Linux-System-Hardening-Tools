@@ -1,4 +1,3 @@
-auth required pam_faildelay.so delay=4000000
 auth required pam_tally.so per_user magic_root onerr=fail
 #
 # /etc/pam.d/common-auth - authentication settings common to all services
