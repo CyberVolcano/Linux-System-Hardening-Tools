@@ -11,3 +11,4 @@ apt-get install libpam-pwquality -y
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-auth /etc/pam.d/common-auth
+cp -f /CyberPatriot-Linux-Tools/security/pwquality.conf /etc/security/pwquality.conf
