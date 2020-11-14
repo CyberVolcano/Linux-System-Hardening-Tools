@@ -185,7 +185,7 @@ GID_MAX			60000
 # in of 3 retries. However, this is a safe fallback in case you are using
 # an authentication module that does not enforce PAM_MAXTRIES.
 #
-LOGIN_RETRIES		10
+LOGIN_RETRIES		5
 
 #
 # Max time in seconds for login
@@ -218,7 +218,7 @@ DEFAULT_HOME	yes
 # (examples: 022 -> 002, 077 -> 007) for non-root users, if the uid is
 # the same as gid, and username is the same as the primary group name.
 #
-# If set to yes, userdel will remove the user´s group if it contains no
+# If set to yes, userdel will remove the user's group if it contains no
 # more members, and useradd will create by default a group with the name
 # of the user.
 #
@@ -336,8 +336,3 @@ ENCRYPT_METHOD SHA512
 # LOGIN_STRING
 # NO_PASSWORD_CONSOLE
 # QMAIL_DIR
-
-
-
-CREATE_HOME yes #64
-

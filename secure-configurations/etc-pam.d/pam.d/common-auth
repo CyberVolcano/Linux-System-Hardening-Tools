@@ -1,3 +1,4 @@
+auth required pam_tally2.so onerr=fail deny=3
 auth required pam_tally.so per_user magic_root onerr=fail
 #
 # /etc/pam.d/common-auth - authentication settings common to all services
@@ -24,3 +25,5 @@ auth	requisite			pam_deny.so
 auth	required			pam_permit.so
 # and here are more per-package modules (the "Additional" block)
 # end of pam-auth-update config
+
+auth required pam_faildelay.so delay=4000000
