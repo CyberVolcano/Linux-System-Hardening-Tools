@@ -12,5 +12,5 @@ auth	required			pam_permit.so
 #If authenticated successfully the user process inherits it's own permissions
 auth	optional			pam_cap.so
 
-#Ensure the a period of four seconds between logins
+#Ensure a period of four seconds between logins
 auth required pam_faildelay.so delay=4000000
