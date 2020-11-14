@@ -4,10 +4,10 @@
     "\\old_files",
     "\\secure-configurations",
     "\\secure-configurations\\etc",
+    "\\secure-configurations\\etc-pam.d",
     "\\secure-configurations\\etc-pam.d\\pam.d",
-    "\\secure-configurations\\etc\\audit",
     "\\security"
   ],
-  "SelectedNode": "\\secure-configurations\\etc\\audit\\auditd.conf",
+  "SelectedNode": "\\secure-configurations\\etc-pam.d\\pam.d\\common-auth",
   "PreviewInSolutionExplorer": false
 }
