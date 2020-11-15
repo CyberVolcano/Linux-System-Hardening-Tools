@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 #Makes copies of old files
 cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files/
