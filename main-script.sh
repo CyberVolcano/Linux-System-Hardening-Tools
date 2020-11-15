@@ -27,9 +27,6 @@ done < "$input"
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 sysctl -p
 
-sh -c 'printf "[Seat:*]\nallow-guest=false\n" >/etc/lightdm/lightdm.conf.d/50-no-guest.conf'
-
-
 awk -F: '($2 == "") {print}' /etc/shadow
 
 #runs auditctl auditing

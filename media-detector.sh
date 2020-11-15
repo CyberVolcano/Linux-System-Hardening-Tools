@@ -1,20 +1,19 @@
+#!/bin/bash
 
 echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED MEDIA FILES!" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------------" >> /CyberPatriot-Linux-Tools/results
 
-find / -name '*.mp3' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.mov' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.mp4' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.avi' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.mpg' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.mpeg' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.flac' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.m4a' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.flv' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.ogg' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.gif' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name "*.png" -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.jpg' -type f >> /CyberPatriot-Linux-Tools/results
-find / -name '*.jpeg' -type f >> /CyberPatriot-Linux-Tools/results
-#ok
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.mp3' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.mov' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.mp4' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.avi' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.mpg' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.flac' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.m4a' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.flv' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.ogg' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.gif' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.png' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.jpg' 2>> /CyberPatriot-Linux-Tools/results
+find / -type d \( -path /run -o -path /lib -o -path /snap \) -prune -false -o -name '*.jpeg' 2>> /CyberPatriot-Linux-Tools/results
