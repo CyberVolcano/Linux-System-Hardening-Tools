@@ -1,13 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\old_files",
     "\\secure-configurations",
     "\\secure-configurations\\etc",
-    "\\secure-configurations\\etc-pam.d",
-    "\\secure-configurations\\etc-pam.d\\pam.d",
-    "\\security"
+    "\\secure-configurations\\etc-pam.d\\pam.d"
   ],
-  "SelectedNode": "\\secure-configurations\\etc-pam.d\\pam.d\\common-auth",
+  "SelectedNode": "\\main-script.sh",
   "PreviewInSolutionExplorer": false
 }
