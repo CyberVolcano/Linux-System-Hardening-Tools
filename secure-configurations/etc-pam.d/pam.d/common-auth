@@ -1,5 +1,6 @@
 #lock a user account if they have 3 unsuccessful logins
 auth required pam_tally2.so onerr=fail deny=3
+account required pam_tally2.so
 
 #if authentication is successful with the user, it's ok to not have a password
 auth	[success=1 default=ignore]	pam_unix.so nullok_secure
