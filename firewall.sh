@@ -24,12 +24,6 @@ iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
 iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
 iptables -A INPUT -f -j DROP
 
-if ! command -v ufw status &> /dev/null
-then
-    echo "UFW is not installed"
-    apt-get install ufw -y
-fi
-
 sudo systemctl enable ufw.service 
 sudo systemctl start ufw.service
 #ufw is a service so we have to enable it

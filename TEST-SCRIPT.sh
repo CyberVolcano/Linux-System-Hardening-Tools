@@ -2,37 +2,7 @@
 
 #Sorts users and alerts of rogue users
 
-#BACKUP cat /etc/passwd | grep "/bin/bash" |  cut -f1 -d":" > /root/Desktop/list_of_users
-
-#Clears IPV4
-iptables -P INPUT ACCEPT
-iptables -P FORWARD ACCEPT
-iptables -P OUTPUT ACCEPT
-iptables -t nat -F
-iptables -t mangle -F
-iptables -F
-iptables -X
-
-#Clears IPV6
-ip6tables -P INPUT ACCEPT
-ip6tables -P FORWARD ACCEPT
-ip6tables -P OUTPUT ACCEPT
-ip6tables -t nat -F
-ip6tables -t mangle -F
-ip6tables -F
-ip6tables -X
-
-iptables -A INPUT -p all -s localhost  -i eth0 -j DROP
-iptables -A INPUT -p tcp ! --syn -m state --state NEW -j DROP
-iptables -A INPUT -p tcp --tcp-flags ALL ALL -j DROP
-iptables -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
-iptables -A INPUT -f -j DROP
-
-ufw enable
-
-ufw logging high
-
-ufw status
+#B
 
 systemctl disable kdump.service #takes up alot of memory, may result in crash #76
 
@@ -46,29 +16,7 @@ sudo apt-get install aide
 #sudo chmod 0770 /var/log #Change VAR/LOG to authorized personel
 #sudo chgrp adm /var/log/syslog
 #LAST MINUTE CONFIGS
-
-#Makes copies of old files
-cp -f /etc/pam.d/common-password /CyberPatriot-Linux-Tools/old_files
-cp -f /etc/pam.d/common-auth /CyberPatriot-Linux-Tools/old_files
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-password /etc/pam.d/common-password
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc-pam.d/pam.d/common-auth /etc/pam.d/common-auth
-#Account lockout policy
-sudo faillog -m 10
-
-cp -f /etc/security/limits.conf /CyberPatriot-Linux-Tools/old_files/
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
-
-cp -f /etc/security/pwquality.conf /CyberPatriot-Linux-Tools/old_files/
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/pwquality.conf /etc/security/pwquality.conf
-
-cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
-
-sysctl -p
-
-cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/login.defs /etc/login.defs
-
+\
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "FINDING WORLD WRITABLE FILES" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
