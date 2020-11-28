@@ -9,7 +9,7 @@
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 sysctl -p
 
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/syslog.d/50-default.conf /etc/syslog.d/50-default.conf
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 #Sets Up Proper Logging
 
 #runs auditctl auditing
@@ -19,6 +19,8 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/audit.rules /etc
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc/audit/auditd.conf
 
 auditctl -e 1
+
+systemctl start rsyslog
 
 echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "POTENTIAL MALICIOUS ALIAS" >> /CyberPatriot-Linux-Tools/results
@@ -34,26 +36,26 @@ for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done >> /CyberPa
 
 #Find any host based authentication files
 
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "HOST BASED AUTH FILES DETECTED!" >> /CyberPatriot-Linux-Tools/results
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 
-sudo find / -name '*.shosts'
+sudo find / -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
 
-find / -name shosts.equiv
+find / -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
 
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNSAFE PACKAGES!" >> /CyberPatriot-Linux-Tools/results
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "----------------" >> /CyberPatriot-Linux-Tools/results
 
-dpkg -l | grep tftpd-hpa
-dpkg -l | egrep -i 'ftpd' | egrep -v 'tftpd'
-sudo apt list rsh-server
-sudo apt list nis
-sudo apt list telnetd
+dpkg -l | grep tftpd-hpa  >> /CyberPatriot-Linux-Tools/results
+dpkg -l | egrep -i 'ftpd' | egrep -v 'tftpd' >> /CyberPatriot-Linux-Tools/results
+dpkg -l | grep  rsh-server >> /CyberPatriot-Linux-Tools/results
+dpkg -l | grep nis >> /CyberPatriot-Linux-Tools/results
+dpkg -l | grep telnetd >> /CyberPatriot-Linux-Tools/results
 
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "POTENTIAL PROMISC NIC!" >> /CyberPatriot-Linux-Tools/results
-echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
-ip link | grep -i promisc
+ip link | grep -i promisc  >> /CyberPatriot-Linux-Tools/results
