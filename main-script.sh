@@ -10,6 +10,7 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysct
 sysctl -p
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
+
 #Sets Up Proper Logging
 
 #runs auditctl auditing

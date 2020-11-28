@@ -1,16 +1,18 @@
+#!/bin/bash
 
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
-cat /etc/passwd | grep "/bin/bash" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
+cat /etc/passwd | grep "/bin/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
 input="/CyberPatriot-Linux-Tools/list_of_users"
 
 while IFS= read -r var
 do
   if [[ $(grep $var /CyberPatriot-Linux-Tools/approved_users) ]]; then
-    :
+    chgrp users /home/$var
+    chown 750 /home/$var
  else
     echo $var " is an unapproved user!"
     echo $var " is an unapproved user!" >> /CyberPatriot-Linux-Tools/results
@@ -54,7 +56,4 @@ while IFS= read -r var
 do
   chown $var /home/$var
 
-
-ls /home | xargs chgrp users  
-
-ls /home | xargs chown 750
+done < "$input"
