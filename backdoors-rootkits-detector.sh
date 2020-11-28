@@ -1,5 +1,10 @@
  #!/bin/bash
 
+sudo apt install rkhunter -y
+sudo rkhunter --propupd
+rkhunter --update
+echo 'APT_AUTOGEN="yes"' >> /etc/default/rkhunter
+
 PotentialBackdoors=('netcat' 'netcat-openbsd' 'netcat-traditional' 'ncat' 'pnetcat' 'socat' 'sock' 'socket' 'sbd')
 
 for program in "${PotentialBackdoors[@]}"; do
