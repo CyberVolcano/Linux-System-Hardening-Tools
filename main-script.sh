@@ -5,6 +5,7 @@
 /CyberPatriot-Linux-Tools/backup.sh
 /CyberPatriot-Linux-Tools/password-policy.sh
 /CyberPatriot-Linux-Tools/usersec.sh
+/CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 sysctl -p
@@ -49,11 +50,12 @@ echo "----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNSAFE PACKAGES!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------" >> /CyberPatriot-Linux-Tools/results
 
-dpkg -l | grep tftpd-hpa  >> /CyberPatriot-Linux-Tools/results
-dpkg -l | egrep -i 'ftpd' | egrep -v 'tftpd' >> /CyberPatriot-Linux-Tools/results
-dpkg -l | grep  rsh-server >> /CyberPatriot-Linux-Tools/results
-dpkg -l | grep nis >> /CyberPatriot-Linux-Tools/results
-dpkg -l | grep telnetd >> /CyberPatriot-Linux-Tools/results
+apt list tftpd-hpa  >> /CyberPatriot-Linux-Tools/results
+apt list ftpd >> /CyberPatriot-Linux-Tools/results
+apt list tftpd >> /CyberPatriot-Linux-Tools/results
+apt list rsh-server >> /CyberPatriot-Linux-Tools/results
+apt list nis >> /CyberPatriot-Linux-Tools/results
+apt list telnetd >> /CyberPatriot-Linux-Tools/results
 
 echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "POTENTIAL PROMISC NIC!" >> /CyberPatriot-Linux-Tools/results

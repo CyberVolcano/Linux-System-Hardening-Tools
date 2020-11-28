@@ -4,7 +4,7 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNAPPROVED USERS!" >> /CyberPatriot-Linux-Tools/results
 echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
-cat /etc/passwd | grep "/bin/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
+cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
 input="/CyberPatriot-Linux-Tools/list_of_users"
 
