@@ -14,6 +14,10 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/syslog.d/50-default.co
 
 #runs auditctl auditing
 apt-get install auditd -y
+
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/audit.rules /etc/audit/audit.rules
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc/audit/auditd.conf
+
 auditctl -e 1
 
 echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
