@@ -22,6 +22,7 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc
 
 auditctl -e 1
 
+systemctl enable rsyslog
 systemctl start rsyslog
 
 echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
@@ -62,3 +63,23 @@ echo "POTENTIAL PROMISC NIC!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
 ip link | grep -i promisc  >> /CyberPatriot-Linux-Tools/results
+
+echo "---------------------" >> /CyberPatriot-Linux-Tools/results
+echo "CHECK FOR SHELLSHOCK VULNERABILITY!" >> /CyberPatriot-Linux-Tools/results
+echo "----------------------" >> /CyberPatriot-Linux-Tools/results
+
+env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable"
+echo "sudo apt-get update && sudo apt-get install --only-upgrade bash" 
+
+passwd -l root
+usermod -s /sbin/nologin root
+#Lock out root account and change shell
+
+#Set FireFox as default browser
+update-alternatives --set x-www-browser /usr/bin/firefox
+
+#Remove information about our operating system on login prompts
+
+echo "Nothing Here!" > /etc/issue
+echo "Nothing Here!" > /etc/issue.net
+echo "Nothing Here!" > /etc/motd

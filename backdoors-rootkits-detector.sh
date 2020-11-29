@@ -5,15 +5,19 @@ sudo rkhunter --propupd
 rkhunter --update
 echo 'APT_AUTOGEN="yes"' >> /etc/default/rkhunter
 
+echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+echo "BACKDOOR DETECTED!" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------" >> /CyberPatriot-Linux-Tools/results
+
 PotentialBackdoors=('netcat' 'netcat-openbsd' 'netcat-traditional' 'ncat' 'pnetcat' 'socat' 'sock' 'socket' 'sbd')
 
 for program in "${PotentialBackdoors[@]}"; do
 	dpkg -s $program &> /dev/null  
 	if [ $? -ne 0 ]
 	then
-		echo "not installed"  
+		echo $program "not installed"  
 	else
-		echo $program "DETECTED!"
+		echo $program "DETECTED!" >> /CyberPatriot-Linux-Tools/results
 	fi
 done
 

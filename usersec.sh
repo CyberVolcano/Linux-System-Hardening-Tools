@@ -13,12 +13,19 @@ do
   if [[ $(grep $var /CyberPatriot-Linux-Tools/approved_users) ]]; then
     chgrp users /home/$var
     chown 750 /home/$var
+    chage -m 10 -M 90 -W 7 $var
+
+    #UNLOCK USER ACCOUNTS & SET THEIR SHELL TO BASH
+    usermod -s /bin/bash $var
+    passwd -u $var
  else
     echo $var " is an unapproved user!"
     echo $var " is an unapproved user!" >> /CyberPatriot-Linux-Tools/results
  fi
 
 done < "$input"
+
+
 
 sudo egrep -i '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/*
 
