@@ -65,6 +65,22 @@ echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 ip link | grep -i promisc  >> /CyberPatriot-Linux-Tools/results
 
 echo "---------------------" >> /CyberPatriot-Linux-Tools/results
+echo "SUSPICIOUS PROGRAMS!" >> /CyberPatriot-Linux-Tools/results
+echo "---------------------" >> /CyberPatriot-Linux-Tools/results
+
+SuspiciousPrograms=('nmap','wireshark','john','john-data','hydra','hydra-gtk','aircrack-ng','fcrackzip','lcrack','ophcrack','ophcrack-cli','pdfcrack','pyrit','rarcrack','sipcrack','irpas','logkeys','nikto','medusa','kismet','kismet-plugins','wifite','slowhttptest')
+
+for program in "${SuspiciousPrograms[@]}"; do
+	dpkg -s $program &> /dev/null  
+	if [ $? -ne 0 ]
+	then
+		echo $program "not installed"  
+	else
+		echo $program "DETECTED!" >> /CyberPatriot-Linux-Tools/results
+	fi
+done
+
+echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CHECK FOR SHELLSHOCK VULNERABILITY!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
@@ -75,8 +91,17 @@ passwd -l root
 usermod -s /sbin/nologin root
 #Lock out root account and change shell
 
+# Disable Automounting
+update-rc.d autofs disable
+
 #Set FireFox as default browser
 update-alternatives --set x-www-browser /usr/bin/firefox
+
+#Lockout computer after a certain amount of time
+
+gsettings set org.gnome.desktop.session idle-delay 800
+gsettings set org.gnome.desktop.screensaver lock-delay 0 
+gsettings set org.gnome.desktop.screensaver lock-enabled true
 
 #Remove information about our operating system on login prompts
 

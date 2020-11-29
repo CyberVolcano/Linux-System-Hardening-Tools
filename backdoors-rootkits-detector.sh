@@ -1,8 +1,13 @@
  #!/bin/bash
 
+sudo apt install unhide -y
+sudo apt install chkrootkit -y
 sudo apt install rkhunter -y
-sudo rkhunter --propupd
+
+
 rkhunter --update
+rkhunter --propupd
+
 echo 'APT_AUTOGEN="yes"' >> /etc/default/rkhunter
 
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
@@ -33,3 +38,7 @@ elif [[ $OS_VERSION == *"Ubuntu 18"* ]]; then
 fi
 
 echo ""
+
+rkhunter --check --sk
+chkrootkit
+unhide -f brute proc procall procfs sys quick reverse
