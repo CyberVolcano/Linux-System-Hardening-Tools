@@ -6,7 +6,7 @@
 #setting up pam-cracklib
 #apt-get install libpam-cracklib -y DECAPRECATED FUNCTION
 
-apt install -ylibpam-pwquality
+apt install -y libpam-pwquality
 apt install -y libpam-modules
 
 

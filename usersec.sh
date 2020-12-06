@@ -33,7 +33,7 @@ do
 	echo $userID
 	if [[ $userID -eq 0 ]]; then
 		echo "That is a root account"
-	elif [[ $userID -lt 1000 || $userID -eq 65534]]; then
+	elif [[ $userID -lt 1000]]; then
 		echo "Locking system account"
 		echo $var | cut -d: -f1 | xargs usermod -s /usr/sbin/nologin
 	else

@@ -94,8 +94,7 @@ echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CHECK FOR SHELLSHOCK VULNERABILITY!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
-env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable"
-echo "sudo apt-get update && sudo apt-get install --only-upgrade bash" 
+env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable" >> results.txt
 
 passwd -l root
 usermod -s /sbin/nologin root
@@ -106,7 +105,7 @@ usermod -g 0 root
 #Change root GID to 0
 
 # Disable Automounting
-update-rc.d autofs disable
+echo "blacklist autofs" >> /etc/modprobe.d/blacklist.conf
 
 #Set FireFox as default browser
 update-alternatives --set x-www-browser /usr/bin/firefox
