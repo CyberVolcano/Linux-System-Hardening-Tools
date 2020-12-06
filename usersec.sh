@@ -10,7 +10,7 @@ input="/CyberPatriot-Linux-Tools/list_of_users"
 
 while IFS= read -r var
 do
-  if [[ $(grep $var /CyberPatriot-Linux-Tools/approved_users) ]]; then
+  if [ $(grep $var /CyberPatriot-Linux-Tools/approved_users) ]; then
     chgrp users /home/$var
     chown 750 /home/$var
     chage -m 10 -M 90 -W 7 $var
@@ -31,15 +31,15 @@ while IFS= read -r var
 do
 	userID=$(echo $var | cut -d: -f1 | xargs id -u)
 	echo $userID
-	if [[ $userID -eq 0 ]]; then
+	if [ $userID -eq 0 ]; then
 		echo "That is a root account"
-	elif [[ $userID -lt 1000]]; then
+	elif [ $userID -lt 1000 ]; then
 		echo "Locking system account"
 		echo $var | cut -d: -f1 | xargs usermod -s /usr/sbin/nologin
 	else
 		echo "This must be a user account"
 	fi
-done < "$input"
+done <"$input"
 
 sudo egrep -i '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/*
 

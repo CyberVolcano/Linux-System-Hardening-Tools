@@ -1,8 +1,8 @@
  #!/bin/bash
 
-sudo apt install unhide -y
-sudo apt install chkrootkit -y
-sudo apt install rkhunter -y
+apt install unhide -y
+apt install chkrootkit -y
+apt install rkhunter -y
 
 
 rkhunter --update
@@ -37,7 +37,6 @@ elif [[ $OS_VERSION == *"Ubuntu 18"* ]]; then
 	/bin/lsmod | awk '{print $1}' > /CyberPatriot-Linux-Tools/TargetSystemKernelModules
 fi
 
-echo ""
 
 rkhunter --check --sk
 chkrootkit

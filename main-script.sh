@@ -6,7 +6,7 @@
 /CyberPatriot-Linux-Tools/password-policy.sh
 /CyberPatriot-Linux-Tools/usersec.sh
 /CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
-/CyberPatriot-Linux-Tools/file-perm.sh
+/CyberPatriot-Linux-Tools/file-perms.sh
 /CyberPatriot-Linux-Tools/apparmor.sh
 /CyberPatriot-Linux-Tools/updates.sh
 
