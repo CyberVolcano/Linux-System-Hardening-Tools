@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\secure-configurations",
-    "\\secure-configurations\\etc"
+    "\\secure-configurations\\etc",
+    "\\secure-configurations\\etc-pam.d\\pam.d",
+    "\\secure-configurations\\etc\\security",
+    "\\secure-configurations\\Ubuntu-16-Packages"
   ],
-  "SelectedNode": "\\file-perms.sh",
+  "SelectedNode": "\\usersec.sh",
   "PreviewInSolutionExplorer": false
 }
