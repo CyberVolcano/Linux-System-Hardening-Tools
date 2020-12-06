@@ -113,9 +113,9 @@ update-alternatives --set x-www-browser /usr/bin/firefox
 
 #Lockout computer after a certain amount of time
 
-gsettings set org.gnome.desktop.session idle-delay 800
-gsettings set org.gnome.desktop.screensaver lock-delay 0 
-gsettings set org.gnome.desktop.screensaver lock-enabled true
+#gsettings set org.gnome.desktop.session idle-delay 800
+#gsettings set org.gnome.desktop.screensaver lock-delay 0 
+#gsettings set org.gnome.desktop.screensaver lock-enabled true
 
 #Remove information about our operating system on login prompts
 
