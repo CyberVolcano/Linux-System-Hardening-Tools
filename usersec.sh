@@ -25,7 +25,21 @@ do
 
 done < "$input"
 
+input=/etc/passwd
 
+while IFS= read -r var
+do
+	userID=$(echo $var | cut -d: -f1 | xargs id -u)
+	echo $userID
+	if [[ $userID -eq 0 ]]; then
+		echo "That is a root account"
+	elif [[ $userID -lt 1000 || $userID -eq 65534]]; then
+		echo "Locking system account"
+		echo $var | cut -d: -f1 | xargs usermod -s /usr/sbin/nologin
+	else
+		echo "This must be a user account"
+	fi
+done < "$input"
 
 sudo egrep -i '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/*
 
@@ -43,9 +57,9 @@ awk -F: '($2 == "") {print}' /etc/shadow
 
 awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
 
-sudo useradd -D -f 35
+sudo useradd -D -f 30
 
-#Disable inactive Accounts after 35 days
+#Disable inactive Accounts after 30 days
 
 sudo systemctl mask ctrl-alt-del.target
 sudo systemctl daemon-reload

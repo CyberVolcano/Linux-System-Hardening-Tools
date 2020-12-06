@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\secure-configurations",
-    "\\secure-configurations\\etc",
-    "\\secure-configurations\\etc-pam.d\\pam.d"
+    "\\secure-configurations\\etc"
   ],
-  "SelectedNode": "\\main-script.sh",
+  "SelectedNode": "\\file-perms.sh",
   "PreviewInSolutionExplorer": false
 }

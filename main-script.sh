@@ -6,6 +6,9 @@
 /CyberPatriot-Linux-Tools/password-policy.sh
 /CyberPatriot-Linux-Tools/usersec.sh
 /CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
+/CyberPatriot-Linux-Tools/file-perm.sh
+/CyberPatriot-Linux-Tools/apparmor.sh
+/CyberPatriot-Linux-Tools/updates.sh
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 sysctl -p
@@ -17,10 +20,14 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/rsyslog.d/50-default.c
 #runs auditctl auditing
 apt-get install auditd -y
 
+systemctl enable auditd
+systemctl start auditd
+
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/audit.rules /etc/audit/audit.rules
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc/audit/auditd.conf
 
-auditctl -e 1
+
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
 
 systemctl enable rsyslog
 systemctl start rsyslog
@@ -80,6 +87,9 @@ for program in "${SuspiciousPrograms[@]}"; do
 	fi
 done
 
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/bashrc /etc/bashrc
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/profile /etc/profile
+
 echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CHECK FOR SHELLSHOCK VULNERABILITY!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------------" >> /CyberPatriot-Linux-Tools/results
@@ -90,6 +100,10 @@ echo "sudo apt-get update && sudo apt-get install --only-upgrade bash"
 passwd -l root
 usermod -s /sbin/nologin root
 #Lock out root account and change shell
+
+usermod -g 0 root
+
+#Change root GID to 0
 
 # Disable Automounting
 update-rc.d autofs disable
@@ -108,3 +122,6 @@ gsettings set org.gnome.desktop.screensaver lock-enabled true
 echo "Nothing Here!" > /etc/issue
 echo "Nothing Here!" > /etc/issue.net
 echo "Nothing Here!" > /etc/motd
+
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.deny /etc/hosts.deny
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.allow /etc/hosts.allow

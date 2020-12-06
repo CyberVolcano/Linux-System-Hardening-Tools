@@ -89,5 +89,261 @@
 ## ssh configuration
 -w /etc/ssh/sshd_config -k CFG_sshd_config
 
+## su usage
+-a always,exit -F path=/bin/su -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-priv_change
+
+## chfn usage
+sudo auditctl -l | grep '/usr/bin/chfn'
+
+## mount usage
+-a always,exit -F path=/bin/mount -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-mount
+
+## ssh-agent usage
+-a always,exit -F path=/usr/bin/ssh-agent -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-ssh
+
+## ssh-keysign
+-a always,exit -F path=/usr/lib/openssh/ssh-keysign -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-ssh
+
+## setxattr usage
+-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S setxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S setxattr -F auid=0 -k perm_mod 
+
+## lsetxattr usage
+
+-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
+
+## fsetxattr usage
+
+-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod 
+
+## removexattr usage
+
+-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S removexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S removexattr -F auid=0 -k perm_mod 
+
+## lremovexattr usage
+
+-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod 
+
+## fremovexattr usage
+
+-a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=-1 -k perm_mod
+-a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
+
+##chown usage
+-a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S chown -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##fchown usage
+
+-a always,exit -F arch=b32 -S fchown -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S fchown -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## fchownat usage
+
+-a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##lchown usage
+-a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##chmod usage
+
+-a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S chmod -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##fchmod 
+
+-a always,exit -F arch=b32 -S fchmod -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S fchmod -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## fchmodat
+
+-a always,exit -F arch=b32 -S fchmodat -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b64 -S fchmodat -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## open system call
+-a always,exit -F arch=b32 -S open -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S open -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S open -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S open -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+## openat usage
+
+-a always,exit -F arch=b32 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+## open by handle at
+
+-a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S open_by_handle_at -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+## sudo usage
+
+-a always,exit -F path=/usr/bin/sudo -F perm=x -F auid>=1000 -F auid!=-1 -k priv_cmd
+
+## sudo edit
+
+-a always,exit -F path=/usr/bin/sudoedit -F perm=x -F auid>=1000 -F auid!=-1 -k priv_cmd
+
+##chsh
+
+-a always,exit -F path=/usr/bin/chsh -F perm=x -F auid>=1000 -F auid!=-1 -k priv_cmd
+
+##newgrp
+
+-a always,exit -F path=/usr/bin/newgrp -F perm=x -F auid>=1000 -F auid!=-1 -k priv_cmd
+
+##chcon
+
+-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##apparmor_parser
+
+-a always,exit -F path=/sbin/apparmor_parser -F perm=x -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##setfacl
+
+-a always,exit -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##unix updates
+-a always,exit -F path=/sbin/unix_update -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-unix-update
+
+##gpasswd
+
+-a always,exit -F path=/usr/bin/gpasswd -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-gpasswd
+
+##sudo auditctl -l | grep -w chage
+
+-a always,exit -F path=/usr/bin/chage -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-chage
+
+##usermod
+
+-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-usermod
+
+## timecheck
+
+-a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid>=1000 -F auid!=-1 -k privileged-pam_timestamp_check
+
+## finit syscall
+
+-a always,exit -F arch=b32 -S finit_module -F auid>=1000 -F auid!=-1 -k module_chng
+-a always,exit -F arch=b64 -S finit_module -F auid>=1000 -F auid!=-1 -k module_chng
+
+## delete module
+
+-a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=-1 -k module_chng
+-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=-1 -k module_chng
+
+##execve
+
+-a always,exit -F arch=b64 -S execve -C uid!=euid -F key=execpriv 
+-a always,exit -F arch=b64 -S execve -C gid!=egid -F key=execpriv 
+-a always,exit -F arch=b32 -S execve -C uid!=euid -F key=execpriv 
+-a always,exit -F arch=b32 -S execve -C gid!=egid -F key=execpriv
+
+## setxattr
+
+-a always,exit -F arch=b64 -S setxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b32 -S setxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## lsetxattr
+
+-a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## fsetxattr
+
+-a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## removexattr
+
+-a always,exit -F arch=b64 -S removexattr -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b32 -S removexattr -F auid>=1000 -F auid!=-1 -k perm_chng
+
+## lremovexattr
+
+-a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=-1 -k perm_chng
+-a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=-1 -k perm_chng
+
+##  unlink
+
+-a always,exit -F arch=b64 -S unlink -F auid>=1000 -F auid!=-1 -k delete
+-a always,exit -F arch=b32 -S unlink -F auid>=1000 -F auid!=-1 -k delete
+
+##  unlinkat
+
+-a always,exit -F arch=b64 -S unlinkat -F auid>=1000 -F auid!=-1 -k delete
+-a always,exit -F arch=b32 -S unlinkat -F auid>=1000 -F auid!=-1 -k delete
+
+## rename
+
+-a always,exit -F arch=b64 -S rename -F auid>=1000 -F auid!=-1 -k delete
+-a always,exit -F arch=b32 -S rename -F auid>=1000 -F auid!=-1 -k delete
+
+## renameat
+
+-a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=-1 -k delete
+-a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=-1 -k delete
+
+## finit_module
+
+-a always,exit -F arch=b32 -S init_module -S finit_module -k modules
+-a always,exit -F arch=b64 -S init_module -S finit_module -k modules
+
+## delete module
+
+-a always,exit -F arch=b32 -S delete_module -k modules
+-a always,exit -F arch=b64 -S delete_module -k modules
+
+##truncate
+
+-a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+## ftruncate
+
+-a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+## creat society
+
+-a always,exit -F arch=b32 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=-1 -k perm_access
+-a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=-1 -k perm_access
+
+##kmod
+
+-w /bin/kmod -p x -k module
+
+##fdisk
+
+-w /sbin/fdisk -p x -k fdisk
 
 -e 2
