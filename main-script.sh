@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#Sets Up Proper Logging
+
+#runs auditctl auditing
+apt-get install auditd -y
+
+systemctl enable auditd
+systemctl start auditd
+
 /CyberPatriot-Linux-Tools/firewall.sh
 /CyberPatriot-Linux-Tools/media-detector.sh
 /CyberPatriot-Linux-Tools/backup.sh
@@ -15,17 +23,8 @@ sysctl -p
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/rsyslog.d/50-default.conf /etc/rsyslog.d/50-default.conf
 
-#Sets Up Proper Logging
-
-#runs auditctl auditing
-apt-get install auditd -y
-
-systemctl enable auditd
-systemctl start auditd
-
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/audit.rules /etc/audit/audit.rules
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc/audit/auditd.conf
-
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
 
