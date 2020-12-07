@@ -28,11 +28,13 @@ chmod o-rwx,g-rw /etc/gshadow-
 chown root:root /boot/grub/grub.cfg
 chmod og-rwx /boot/grub/grub.cfg
 
-chown root:root /etc/motd
-chmod 644 /etc/motd
-
 chown root:root /etc/issue
 chmod 644 /etc/issue
+
+if [ -f "/etc/motd" ]; then
+	chown root:root /etc/motd
+	chmod 644 /etc/motd
+fi
 
 chown root:root /etc/issue.net
 chmod 644 /etc/issue.net
@@ -63,8 +65,6 @@ chmod og-rwx /etc/cron.monthly
 chown root:root /etc/cron.d
 chmod og-rwx /etc/cron.d
 
-rm /etc/cron.deny
-rm /etc/at.deny
 touch /etc/cron.allow
 touch /etc/at.allow
 chmod og-rwx /etc/cron.allow

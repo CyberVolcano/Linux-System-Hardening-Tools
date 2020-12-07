@@ -21,9 +21,6 @@ if [ -f "/etc/motd" ]; then
 fi
 
 cp -f /etc/audit/audit.rules /CyberPatriot-Linux-Tools/old_files/
-cp -f /etc/audit/auditd /CyberPatriot-Linux-Tools/old_files/
-
-cp -f /etc/aide/aide.conf /CyberPatriot-Linux-Tools/old_files/
 
 cp -f /etc/profile /CyberPatriot-Linux-Tools/old_files/
 

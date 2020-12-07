@@ -8,9 +8,11 @@ apt-get install auditd -y
 systemctl enable auditd
 systemctl start auditd
 
+/CyberPatriot-Linux-Tools/backup.sh
+
 /CyberPatriot-Linux-Tools/firewall.sh
 /CyberPatriot-Linux-Tools/media-detector.sh
-/CyberPatriot-Linux-Tools/backup.sh
+
 /CyberPatriot-Linux-Tools/password-policy.sh
 /CyberPatriot-Linux-Tools/usersec.sh
 /CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
