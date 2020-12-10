@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\services"
+    "\\services",
+    "\\services\\proftpd"
   ],
-  "SelectedNode": "\\services\\vsftpd-secured",
+  "SelectedNode": "\\services\\proftpd\\tls.conf",
   "PreviewInSolutionExplorer": false
 }

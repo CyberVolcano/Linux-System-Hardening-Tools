@@ -1,4 +1,4 @@
-cp /etc/pure-ftpd/conf /CyberPatriot-Linux-Tools/
+cp -r /etc/pure-ftpd/conf /CyberPatriot-Linux-Tools/old_files/
 
 rm /etc/pure-ftpd/conf/*
 
@@ -36,7 +36,7 @@ echo '15' > /etc/pure-ftpd/conf/MaxIdleTime
 
 echo '2000 8' > /etc/pure-ftpd/conf/LimitRecursion
 
-echo 'yes' > /etc/pure-ftpd/conf/AntiWarez
+#echo 'yes' > /etc/pure-ftpd/conf/AntiWarez
 
 echo 'no' > /etc/pure-ftpd/conf/AnonymousCanCreateDirs
 
