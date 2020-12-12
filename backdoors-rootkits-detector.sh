@@ -38,6 +38,6 @@ elif [[ $OS_VERSION == *"Ubuntu 18"* ]]; then
 fi
 
 
-rkhunter --check --sk
-chkrootkit
-unhide -f brute proc procall procfs sys quick reverse
+#rkhunter --check --sk
+#chkrootkit
+#unhide -f brute proc procall procfs sys quick reverse
