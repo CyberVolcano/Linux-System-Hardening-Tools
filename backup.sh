@@ -8,6 +8,12 @@ cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/rsyslog.d/50-default.conf /CyberPatriot-Linux-Tools/old_files/
 
+cp -f /etc/sudoers /CyberPatriot-Linux-Tools/old_files/
+cp -f /etc/passwd /CyberPatriot-Linux-Tools/old_files/
+cp -f /etc/group /CyberPatriot-Linux-Tools/old_files/
+
+cp -f /etc/securetty /CyberPatriot-Linux-Tools/old_files/
+
 if [ -f "/etc/issue" ]; then
    cp -f /etc/issue /CyberPatriot-Linux-Tools/old_files/
 fi
@@ -30,3 +36,6 @@ fi
 
 cp -f /etc/hosts.allow /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/hosts.deny /CyberPatriot-Linux-Tools/old_files/
+cp -f /etc/host.conf /CyberPatriot-Linux-Tools/old_files/
+
+cp -f /etc/rc.local /CyberPatriot-Linux-Tools/old_files/

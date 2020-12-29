@@ -1,9 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\secure-configurations",
+    "\\secure-configurations\\etc",
+    "\\secure-configurations\\etc\\audit",
+    "\\secure-configurations\\etc\\rsyslog.d",
+    "\\secure-configurations\\etc\\security",
     "\\services",
-    "\\services\\proftpd"
+    "\\services\\proftpd",
+    "\\tools",
+    "\\tools\\service configuration"
   ],
-  "SelectedNode": "\\services\\proftpd\\tls.conf",
+  "SelectedNode": "\\main-script.sh",
   "PreviewInSolutionExplorer": false
 }

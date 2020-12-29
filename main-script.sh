@@ -10,7 +10,7 @@ systemctl start auditd
 
 /CyberPatriot-Linux-Tools/backup.sh
 
-/CyberPatriot-Linux-Tools/firewall.sh
+/CyberPatriot-Linux-Tools/network-security.sh
 /CyberPatriot-Linux-Tools/media-detector.sh
 
 /CyberPatriot-Linux-Tools/password-policy.sh
@@ -44,6 +44,13 @@ echo "CRONTABS FOR USERS!" >> /CyberPatriot-Linux-Tools/results
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 
 for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done >> /CyberPatriot-Linux-Tools/results
+
+#Locking down Crontab to root
+
+echo root > cron.allow
+echo root > at.allow
+rm cron.deny
+rm at.deny
 
 #Find any host based authentication files
 
@@ -97,19 +104,27 @@ echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
 env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable" >> results.txt
 
+################################################################################################
+
 passwd -l root
+
 usermod -s /sbin/nologin root
+
 #Lock out root account and change shell
 
 usermod -g 0 root
 
 #Change root GID to 0
 
+################################################################################################
+
 # Disable Automounting
 echo "blacklist autofs" >> /etc/modprobe.d/blacklist.conf
 
 #Set FireFox as default browser
 update-alternatives --set x-www-browser /usr/bin/firefox
+
+################################################################################################
 
 #Lockout computer after a certain amount of time
 
@@ -119,9 +134,102 @@ update-alternatives --set x-www-browser /usr/bin/firefox
 
 #Remove information about our operating system on login prompts
 
+################################################################################################
+
 echo "Nothing Here!" > /etc/issue
 echo "Nothing Here!" > /etc/issue.net
 echo "Nothing Here!" > /etc/motd
 
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.deny /etc/hosts.deny
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.allow /etc/hosts.allow
+
+################################################################################################
+# ADDONS
+################################################################################################
+
+echo "install cramfs /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install freevxfs /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install jffs2 /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install hfs /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install hfsplus /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install squashfs /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install udf /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install vfat /bin/true" >> /etc/modprobe.d/CIS.conf
+
+################################################################################################
+
+echo "install dccp /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install sctp /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install rds /bin/true" >> /etc/modprobe.d/CIS.conf
+echo "install tipc /bin/true" >> /etc/modprobe.d/CIS.conf
+
+################################################################################################
+
+#"Setting Sticky bit on all world-writable directories"
+
+df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
+
+#"Core Dumping Process Hardening"
+echo "* hard core 0" >> /etc/security/limits.conf
+
+################################################################################################
+
+#Disable compilers
+
+chmod 000 /usr/bin/as >/dev/null 2>&1
+chmod 000 /usr/bin/byacc >/dev/null 2>&1
+chmod 000 /usr/bin/yacc >/dev/null 2>&1
+chmod 000 /usr/bin/bcc >/dev/null 2>&1
+chmod 000 /usr/bin/kgcc >/dev/null 2>&1
+chmod 000 /usr/bin/cc >/dev/null 2>&1
+chmod 000 /usr/bin/gcc >/dev/null 2>&1
+chmod 000 /usr/bin/*c++ >/dev/null 2>&1
+chmod 000 /usr/bin/*g++ >/dev/null 2>&1
+
+#Configure umask - Newly created file permissions
+
+umask 0027
+
+#Disable USB storage
+
+echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
+
+#Hide processes from regular users
+
+cp -f /etc/fstab /CyberPatriot-Linux-Tools/old_files
+echo "" /> /etc/fstab
+echo "mount -o remount,rw,nosuid,nodev,noexec,relatime,hidepid=2 /proc" >> /etc/fstab
+
+# Securing /tmp directory
+
+chmod 1777 /tmp
+
+#logon access
+
+echo "readonly TMOUT=900" >> /etc/profile.d/idle-users.sh
+echo "readonly HISTFILE" >> /etc/profile.d/idle-users.sh
+chmod +x /etc/profile.d/idle-users.sh
+
+# Securing SUID commands
+
+chmod a-s /usr/bin/chage
+chmod a-s /usr/bin/gpasswd
+chmod a-s /usr/bin/wall
+chmod a-s /usr/bin/chfn
+chmod a-s /usr/bin/chsh
+chmod a-s /usr/bin/newgrp
+chmod a-s /usr/bin/write
+chmod a-s /bin/ping
+chmod a-s /bin/mount
+chmod a-s /bin/umount
+
+# Disable core dumps
+echo 'ulimit -S -c 0 > /dev/null 2>&1' >> /etc/profile
+
+# Disallow Root login
+
+echo "" > /etc/securetty
+
+# Exit 0 rc.local
+
+echo "0" > rc.local
+
+# MAKE SURE TO MAKE SURE THAT OUR USERS AND GROUPS ARE SETUP PROPERLY

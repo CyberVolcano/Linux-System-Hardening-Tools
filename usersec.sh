@@ -6,6 +6,9 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
 cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
+read -p "What is the name of the admin user: "  username
+echo "Excluding: $userExclude!"
+
 input="/CyberPatriot-Linux-Tools/list_of_users"
 
 while IFS= read -r var
@@ -30,12 +33,15 @@ input=/etc/passwd
 while IFS= read -r var
 do
 	userID=$(echo $var | cut -d: -f1 | xargs id -u)
+	accountName=$(userID=$(echo $var | cut -d: -f1)
 	echo $userID
 	if [ $userID -eq 0 ]; then
 		echo "That is a root account"
 	elif [ $userID -lt 1000 ]; then
 		echo "Locking system account"
 		echo $var | cut -d: -f1 | xargs usermod -s /usr/sbin/nologin
+	elif ["$accountName" == "$userExclude"]; then
+		echo "This is our competition user doing nothing"
 	else
 		echo "This must be a user account"
 	fi
@@ -78,3 +84,9 @@ do
   chown $var /home/$var
 
 done < "$input"
+
+groupdel lp
+groupdel news
+groupdel mail
+groupdel uucp
+groupdel games
