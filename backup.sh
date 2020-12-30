@@ -34,8 +34,13 @@ if [ -f "/etc/bashrc" ]; then
    cp -f /etc/bashrc /CyberPatriot-Linux-Tools/old_files/
 fi
 
-cp -f /etc/hosts.allow /CyberPatriot-Linux-Tools/old_files/
-cp -f /etc/hosts.deny /CyberPatriot-Linux-Tools/old_files/
+if [ -f "/etc/hosts.allow" ]; then
+   cp -f /etc/hosts.allow /CyberPatriot-Linux-Tools/old_files/
+fi
+
+if [ -f "/etc/hosts.deny" ]; then
+   cp -f /etc/hosts.deny /CyberPatriot-Linux-Tools/old_files/
+fi
 cp -f /etc/host.conf /CyberPatriot-Linux-Tools/old_files/
 
 cp -f /etc/rc.local /CyberPatriot-Linux-Tools/old_files/

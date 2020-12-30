@@ -47,10 +47,16 @@ for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l; done >> /CyberPa
 
 #Locking down Crontab to root
 
-echo root > cron.allow
-echo root > at.allow
-rm cron.deny
-rm at.deny
+echo root > /etc/cron.allow
+echo root > /etc/at.allow
+
+if [ -f "/etc/cron.deny" ]; then
+   rm cron.deny
+fi
+
+if [ -f "/etc/at.deny" ]; then
+   rm at.deny
+fi
 
 #Find any host based authentication files
 
@@ -58,9 +64,9 @@ echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "HOST BASED AUTH FILES DETECTED!" >> /CyberPatriot-Linux-Tools/results
 echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 
-sudo find / -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
+sudo find / -xdev -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
 
-find / -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
+find / -xdev -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
 
 echo "----------------" >> /CyberPatriot-Linux-Tools/results
 echo "UNSAFE PACKAGES!" >> /CyberPatriot-Linux-Tools/results
@@ -233,3 +239,21 @@ echo "" > /etc/securetty
 echo "0" > rc.local
 
 # MAKE SURE TO MAKE SURE THAT OUR USERS AND GROUPS ARE SETUP PROPERLY
+
+#Configure the system to disable the Ctrl-Alt-Delete sequence for the command line with the following command:
+
+sudo systemctl mask ctrl-alt-del.target
+sudo systemctl daemon-reload
+
+#Disable Automatic USB Mounting
+
+touch /etc/modprobe.d/usb-storage.conf
+echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
+
+###############################################################
+# Process Hiding
+###############################################################
+
+mount -o remount,rw,nosuid,nodev,noexec,relatime,hidepid=2 /proc
+
+echo "proc    /proc    proc    defaults,nosuid,nodev,noexec,relatime,hidepid=2     0     0" > /etc/fstab

@@ -1,7 +1,6 @@
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/20auto-upgrades  /etc/apt/apt.conf.d/20auto-upgrades
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/release-upgrades /etc/apt/apt.conf.d/release-upgrades
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/Ubuntu-16-Packages/sources.list /etc/apt/sources.list
 
 cp -f /etc/apt/sources.list.d /CyberPatriot-Linux-Tools/old_files
 

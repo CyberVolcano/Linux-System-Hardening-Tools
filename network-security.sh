@@ -47,17 +47,12 @@ ufw status
 
 echo "Firewall Secured"
 
-sudo echo "nospoof on" >> /etc/host.conf
-
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.deny /etc/hosts.deny
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/hosts.allow /etc/hosts.allow
+cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/host.conf /etc/host.conf
 
 #Hosts hardening
 
 echo "ALL: 10.0.0.0/255.0.0.0" >> /etc/hosts.allow
 echo "ALL: 192.168.0.0/255.255.0.0" >> /etc/hosts.allow
 echo "ALL: 172.16.0.0/255.240.0.0" >> /etc/hosts.allow
-
-#Turn off spoofing
-
-sudo echo "nospoof on" >> /etc/host.conf

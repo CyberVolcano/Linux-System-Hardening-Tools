@@ -4,7 +4,7 @@ systemctl start apparmor.service
 
 apt-get install libpam-apparmor
 
-sudo apt install apparmor apparmor-profiles apparmor-utils
+sudo apt install apparmor apparmor-profiles apparmor-utils -y
 
 #INSTALL APPARMOR PROFILES
 
