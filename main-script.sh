@@ -256,4 +256,4 @@ echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
 
 mount -o remount,rw,nosuid,nodev,noexec,relatime,hidepid=2 /proc
 
-echo "proc    /proc    proc    defaults,nosuid,nodev,noexec,relatime,hidepid=2     0     0" > /etc/fstab
+echo "proc    /proc    proc    defaults,nosuid,nodev,noexec,relatime,hidepid=2     0     0" >> /etc/fstab
