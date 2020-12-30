@@ -78,8 +78,8 @@ do
 
 done < "$input"
 
-groupdel lp
-groupdel news
-groupdel mail
-groupdel uucp
-groupdel games
+userdel lp
+userdel news
+userdel mail
+userdel uucp
+userdel games
