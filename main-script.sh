@@ -249,11 +249,3 @@ sudo systemctl daemon-reload
 
 touch /etc/modprobe.d/usb-storage.conf
 echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
-
-###############################################################
-# Process Hiding
-###############################################################
-
-mount -o remount,rw,nosuid,nodev,noexec,relatime,hidepid=2 /proc
-
-echo "proc    /proc    proc    defaults,nosuid,nodev,noexec,relatime,hidepid=2     0     0" >> /etc/fstab
