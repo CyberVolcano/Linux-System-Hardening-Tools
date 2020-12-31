@@ -3,12 +3,8 @@
     "",
     "\\secure-configurations",
     "\\secure-configurations\\etc",
-    "\\secure-configurations\\etc\\audit",
-    "\\secure-configurations\\etc\\rsyslog.d",
-    "\\secure-configurations\\etc\\security",
-    "\\services",
+    "\\secure-configurations\\etc\\Debian-9-Packages",
     "\\services\\proftpd",
-    "\\tools",
     "\\tools\\service configuration"
   ],
   "SelectedNode": "\\main-script.sh",
