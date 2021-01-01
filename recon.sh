@@ -10,7 +10,7 @@ echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 
 dpkg -l | grep -E '(crack|hack)' >> /CyberPatriot-Linux-Tools/results
 
-dpkg -l | grep -E '(exploitation|injection)' >> /CyberPatriot-Linux-Tools/results
+dpkg -l | grep -E '(exploitation|injection|sniffer|packet)' >> /CyberPatriot-Linux-Tools/results
 
 ######## LIST PROGRAMS RELATING TO TORRENTING AND RDP #########
 
