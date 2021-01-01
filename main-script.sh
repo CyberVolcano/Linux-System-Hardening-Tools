@@ -58,6 +58,10 @@ if [ -f "/etc/at.deny" ]; then
    rm at.deny
 fi
 
+# Enables auditctl
+
+auditctl -R /etc/audit/audit.rules
+
 #Find any host based authentication files
 
 echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
