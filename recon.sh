@@ -58,7 +58,7 @@ echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "POTENTIAL PYTHON BACKDOORS" >> /CyberPatriot-Linux-Tools/results
 echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 
-find / -xdev -type f -name "*.py" -exec grep -E -l "bind\(.+\)" {} \; >> /CyberPatriot-Linux-Tools/results
+find / -xdev -type f -name "*.py" -exec grep -l -E '#!\/usr\/bin\/python' '{}' \; | xargs -d '\n' grep -l -E 'bind\(.+\)'
 
 ######## FIND PERL BACKDOORS ###########
 
