@@ -14,7 +14,5 @@ apt install unattended-upgrades -y
 
 apt install -y --reinstall net-tools
 apt install -y --reinstall coreutils
-apt install -y --reinstall mlocate
-updatedb
 
 dpkg-reconfigure --priority=low unattended-upgrades

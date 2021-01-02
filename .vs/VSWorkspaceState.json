@@ -4,8 +4,7 @@
     "\\secure-configurations",
     "\\secure-configurations\\etc",
     "\\secure-configurations\\etc\\Debian-9-Packages",
-    "\\services\\proftpd",
-    "\\tools\\service configuration"
+    "\\secure-configurations\\etc\\security"
   ],
   "SelectedNode": "\\main-script.sh",
   "PreviewInSolutionExplorer": false

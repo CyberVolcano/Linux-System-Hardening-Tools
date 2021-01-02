@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt install -y --reinstall mlocate
+
 updatedb
 
 ######## LIST POTENTIAL HACKING PROGRAMS #########

@@ -30,8 +30,6 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/rsyslog.d/50-default.c
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/audit.rules /etc/audit/audit.rules
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/audit/auditd.conf /etc/audit/auditd.conf
 
-cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
-
 systemctl enable rsyslog
 systemctl start rsyslog
 
@@ -179,8 +177,7 @@ echo "install tipc /bin/true" >> /etc/modprobe.d/CIS.conf
 
 df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -type d -perm -0002 2>/dev/null | xargs chmod a+t
 
-#"Core Dumping Process Hardening"
-echo "* hard core 0" >> /etc/security/limits.conf
+
 
 ################################################################################################
 
@@ -203,12 +200,6 @@ umask 0027
 #Disable USB storage
 
 echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
-
-#Hide processes from regular users
-
-cp -f /etc/fstab /CyberPatriot-Linux-Tools/old_files
-echo "" /> /etc/fstab
-echo "mount -o remount,rw,nosuid,nodev,noexec,relatime,hidepid=2 /proc" >> /etc/fstab
 
 # Securing /tmp directory
 
@@ -251,7 +242,3 @@ echo "0" > rc.local
 sudo systemctl mask ctrl-alt-del.target
 sudo systemctl daemon-reload
 
-#Disable Automatic USB Mounting
-
-touch /etc/modprobe.d/usb-storage.conf
-echo "install usb-storage /bin/true" > /etc/modprobe.d/usb-storage.conf
