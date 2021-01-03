@@ -128,6 +128,10 @@ usermod -g 0 root
 
 ################################################################################################
 
+cp /CyberPatriot-Linux-Tools/secure-configurations/etc/security/limits.conf /etc/security/limits.conf
+
+################################################################################################
+
 # Disable Automounting
 echo "blacklist autofs" >> /etc/modprobe.d/blacklist.conf
 
