@@ -12,3 +12,5 @@
 #ftp : ALL
 #mysqld : ALL
 #smtp : ALL
+
+ALL: LOCAL, 127.0.0.1

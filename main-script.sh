@@ -4,6 +4,8 @@
 
 #runs auditctl auditing
 apt-get install auditd -y
+apt-get install git -y
+
 
 systemctl enable auditd
 systemctl start auditd
@@ -142,11 +144,17 @@ update-alternatives --set x-www-browser /usr/bin/firefox
 
 #Lockout computer after a certain amount of time
 
-#gsettings set org.gnome.desktop.session idle-delay 800
-#gsettings set org.gnome.desktop.screensaver lock-delay 0 
-#gsettings set org.gnome.desktop.screensaver lock-enabled true
+gsettings set org.gnome.desktop.session idle-delay 800
+gsettings set org.gnome.desktop.screensaver lock-delay 0 
+gsettings set org.gnome.desktop.screensaver lock-enabled true
 
 #Remove information about our operating system on login prompts
+
+##############
+# Set Default Browser as FireFox
+##############
+
+update-alternatives --set x-www-browser /usr/bin/firefox
 
 ################################################################################################
 
@@ -246,3 +254,18 @@ echo "0" > rc.local
 sudo systemctl mask ctrl-alt-del.target
 sudo systemctl daemon-reload
 
+##########################################
+#INDEVELOPMENT CONFIGURATIONS BELOW
+
+echo "PATH="/usr/local/bin:/usr/bin:/bin"" > /etc/environment
+
+##########################################
+#Remove unsafe compilers
+
+echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "LISTING COMPILERS" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
+
+dpkg -l | egrep -i "compil" >> /CyberPatriot-Linux-Tools/results
+
+dpkg-statoverride --update --add root sudo 4750 /bin/su

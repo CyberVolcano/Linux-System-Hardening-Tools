@@ -53,6 +53,8 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/host.conf /etc/host.co
 
 #Hosts hardening
 
+apt install tcpd -y
+
 echo "ALL: 10.0.0.0/255.0.0.0" >> /etc/hosts.allow
 echo "ALL: 192.168.0.0/255.255.0.0" >> /etc/hosts.allow
 echo "ALL: 172.16.0.0/255.240.0.0" >> /etc/hosts.allow

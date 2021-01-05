@@ -64,6 +64,12 @@ echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 
 awk -F: '($2 == "") {print}' /etc/shadow
 
+echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "CHECK FOR UNSAFE ENCRYPTION NON \$6$ " >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
+
+cut -d: -f2 /etc/shadow
+
 awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
 
 #Disable inactive Accounts after 30 days
