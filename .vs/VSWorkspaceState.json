@@ -4,8 +4,9 @@
     "\\secure-configurations",
     "\\secure-configurations\\etc",
     "\\secure-configurations\\etc\\Debian-9-Packages",
-    "\\secure-configurations\\etc\\security"
+    "\\secure-configurations\\etc\\security",
+    "\\tools"
   ],
-  "SelectedNode": "\\main-script.sh",
+  "SelectedNode": "\\tools\\ssh-keys.sh",
   "PreviewInSolutionExplorer": false
 }

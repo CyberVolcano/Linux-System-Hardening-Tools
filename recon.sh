@@ -83,3 +83,12 @@ find / -xdev -type f -name "*.php" -exec grep -E -l "<\?php echo exec\(\\$\_POST
 find / -xdev -type f -name "*.php" -exec grep -E -l "<\?php system\(\\$\_GET\['cmd']); \?>" {} \; >> /CyberPatriot-Linux-Tools/results
 
 find / -xdev -type f -name "*.php" -exec grep -E -l "<\?php passthru\(\\$\_REQUEST\['cmd']); \?>" {} \; >> /CyberPatriot-Linux-Tools/results
+
+######## FIND NETCAT ALIASES ###########
+
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "FIND NETCAT ALIASES" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+
+sudo find / -xdev -type l -ls | grep "netcat"
+sudo find / -xdev -type l -ls | grep "nc.openbsd"
