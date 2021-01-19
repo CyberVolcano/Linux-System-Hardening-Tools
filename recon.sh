@@ -92,3 +92,11 @@ echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 
 sudo find / -xdev -type l -ls | grep "netcat"
 sudo find / -xdev -type l -ls | grep "nc.openbsd"
+
+######## FIND SUSPICIOUS FILES ###########
+
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "FIND SUSPICIOUS FILES" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+
+find /home -xdev -type f \( -name "*.tar.gz" -o -name "*.tgz" -o -name "*.zip" -o -name "*.deb" \)
