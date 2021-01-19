@@ -6,7 +6,10 @@ cp -f /etc/pam.d/common-auth /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/security/pwquality.conf /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/login.defs /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/sysctl.conf /CyberPatriot-Linux-Tools/old_files/
-cp -f /etc/rsyslog.d/50-default.conf /CyberPatriot-Linux-Tools/old_files/
+
+if [ -f "/etc/rsyslog.d/50-default.conf" ]; then
+	cp -f /etc/rsyslog.d/50-default.conf /CyberPatriot-Linux-Tools/old_files/
+fi
 
 cp -f /etc/sudoers /CyberPatriot-Linux-Tools/old_files/
 cp -f /etc/passwd /CyberPatriot-Linux-Tools/old_files/
@@ -46,4 +49,7 @@ cp -f /etc/fstab /CyberPatriot-Linux-Tools/old_files/
 
 cp -f /etc/host.conf /CyberPatriot-Linux-Tools/old_files/
 
-cp -f /etc/rc.local /CyberPatriot-Linux-Tools/old_files/
+if [ -f "/etc/rc.local" ]; then
+	cp -f /etc/rc.local /CyberPatriot-Linux-Tools/old_files/
+fi
+

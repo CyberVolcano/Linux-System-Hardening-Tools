@@ -65,10 +65,15 @@ chmod og-rwx /etc/cron.monthly
 chown root:root /etc/cron.d
 chmod og-rwx /etc/cron.d
 
-chmod og-rwx /etc/cron.allow
-chmod og-rwx /etc/at.allow
-chown root:root /etc/cron.allow
-chown root:root /etc/at.allow
+if [ -f "/etc/cron.allow" ]; then
+	chmod og-rwx /etc/cron.allow
+	chown root:root /etc/cron.allow
+fi
+
+if [ -f "/etc/at.allow" ]; then
+	chmod og-rwx /etc/at.allow
+	chown root:root /etc/at.allow
+fi
 
 #Directories
 

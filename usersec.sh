@@ -6,7 +6,7 @@ echo "-----------------" >> /CyberPatriot-Linux-Tools/results
 
 cat /etc/passwd | grep "/home" |  cut -f1 -d":" > /CyberPatriot-Linux-Tools/list_of_users
 
-read -p "What is the name of the admin user: "  userExclude
+read -p "What is the name of the CyberPatriot user: "  userExclude
 echo "Excluding: $userExclude"
 
 input="/CyberPatriot-Linux-Tools/list_of_users"
@@ -50,7 +50,7 @@ do
 
 done < "$input"
 
-sudo egrep -i '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/*
+sudo egrep -i '(nopasswd|!authenticate)' /etc/sudoers /etc/sudoers.d/* >> /CyberPatriot-Linux-Tools/results
 
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 echo "USERS WITH 0 AS ID !" >> /CyberPatriot-Linux-Tools/results
@@ -62,15 +62,15 @@ echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 echo "USERS WITH NO PASSWORD" >> /CyberPatriot-Linux-Tools/results
 echo "-------------------" >> /CyberPatriot-Linux-Tools/results
 
-awk -F: '($2 == "") {print}' /etc/shadow
+awk -F: '($2 == "") {print}' /etc/shadow >> /CyberPatriot-Linux-Tools/results
 
 echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CHECK FOR UNSAFE ENCRYPTION NON \$6$ " >> /CyberPatriot-Linux-Tools/results
 echo "-------------------------------------" >> /CyberPatriot-Linux-Tools/results
 
-cut -d: -f2 /etc/shadow
+cut -d: -f2 /etc/shadow >> /CyberPatriot-Linux-Tools/results
 
-awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
+awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd >> /CyberPatriot-Linux-Tools/results
 
 #Disable inactive Accounts after 30 days
 

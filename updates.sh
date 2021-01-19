@@ -2,7 +2,7 @@ cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/50unatt
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/20auto-upgrades  /etc/apt/apt.conf.d/20auto-upgrades
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/apt-apt.conf.d/release-upgrades /etc/apt/apt.conf.d/release-upgrades
 
-cp -f /etc/apt/sources.list.d /CyberPatriot-Linux-Tools/old_files
+cp -rf /etc/apt/sources.list.d /CyberPatriot-Linux-Tools/old_files
 
 sudo apt install python-software-properties
 sudo add-apt-repository ppa:libreoffice/ppa
