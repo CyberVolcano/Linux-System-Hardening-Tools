@@ -2,7 +2,7 @@
 systemctl enable apparmor.service
 systemctl start apparmor.service
 
-apt-get install libpam-apparmor
+apt install libpam-apparmor
 
 sudo apt install apparmor apparmor-profiles apparmor-utils -y
 

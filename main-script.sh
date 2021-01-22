@@ -70,7 +70,9 @@ echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 echo "HOST BASED AUTH FILES DETECTED!" >> /CyberPatriot-Linux-Tools/results
 echo "--------------------------------" >> /CyberPatriot-Linux-Tools/results
 
-sudo find / -xdev -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
+find / -xdev -name '*.shosts' >> /CyberPatriot-Linux-Tools/results
+find / -xdev -name '*.netrc' >> /CyberPatriot-Linux-Tools/results
+find / -xdev -name '*.rhosts' >> /CyberPatriot-Linux-Tools/results
 
 find / -xdev -name shosts.equiv >> /CyberPatriot-Linux-Tools/results
 
@@ -164,7 +166,7 @@ echo "Nothing Here!" > /etc/motd
 
 
 ################################################################################################
-# ADDONS
+# Disable unused files systems
 ################################################################################################
 
 echo "install cramfs /bin/true" >> /etc/modprobe.d/CIS.conf
@@ -175,6 +177,15 @@ echo "install hfsplus /bin/true" >> /etc/modprobe.d/CIS.conf
 echo "install squashfs /bin/true" >> /etc/modprobe.d/CIS.conf
 echo "install udf /bin/true" >> /etc/modprobe.d/CIS.conf
 echo "install vfat /bin/true" >> /etc/modprobe.d/CIS.conf
+
+rmmod cramfs
+rmmod freevxfs
+rmmod jffs2
+rmmod hfs
+rmmod hfsplus
+rmmod squashfs
+rmmod udf
+rmmod vfat
 
 ################################################################################################
 
