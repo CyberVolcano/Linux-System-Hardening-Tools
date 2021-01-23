@@ -101,3 +101,20 @@ echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 
 find /home -xdev -type f \( -name "*.tar.gz" -o -name "*.tgz" -o -name "*.zip" -o -name "*.deb" \) >> /CyberPatriot-Linux-Tools/results
 find /usr/share -xdev -type f \( -name "*.tar.gz" -o -name "*.tgz" -o -name "*.zip" -o -name "*.deb" \)
+
+######## FORM MAIL LOCATOR ###########
+
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "MAIL FORM LOCATOR" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+
+find / -xdev -name "[Ff]orm[mM]ai*" >> /CyberPatriot-Linux-Tools/results
+find / -xdev -name "[Cc]giemai*" >> /CyberPatriot-Linux-Tools/results
+
+######## REMOVE INETD #########
+
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "INETD IS INSECURE" >> /CyberPatriot-Linux-Tools/results
+echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
+
+dpkg -l | grep inetd >> /CyberPatriot-Linux-Tools/results

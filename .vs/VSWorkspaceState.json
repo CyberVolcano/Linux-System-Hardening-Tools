@@ -3,10 +3,12 @@
     "",
     "\\secure-configurations",
     "\\secure-configurations\\etc",
+    "\\secure-configurations\\etc\\apt-apt.conf.d",
+    "\\secure-configurations\\etc\\Debian-9-Packages",
     "\\secure-configurations\\etc\\NetworkManager",
     "\\secure-configurations\\etc\\security",
+    "\\secure-configurations\\etc\\Ubuntu-18-Packages",
     "\\tools"
   ],
-  "SelectedNode": "\\main-script.sh",
   "PreviewInSolutionExplorer": false
 }
