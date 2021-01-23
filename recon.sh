@@ -118,3 +118,11 @@ echo "INETD IS INSECURE" >> /CyberPatriot-Linux-Tools/results
 echo "-------------------------" >> /CyberPatriot-Linux-Tools/results
 
 dpkg -l | grep inetd >> /CyberPatriot-Linux-Tools/results
+
+######## LOCATE MKFIFO PROCESSES #########
+
+echo "------------------------------------" >> /CyberPatriot-Linux-Tools/results
+echo "MKFIFO IS USED IN ALOT OF BACKDOORS" >> /CyberPatriot-Linux-Tools/results
+echo "------------------------------------" >> /CyberPatriot-Linux-Tools/results
+
+ps aux | grep mkfifo
