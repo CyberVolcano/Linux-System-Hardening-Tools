@@ -14,15 +14,17 @@ systemctl start auditd
 
 /CyberPatriot-Linux-Tools/network-security.sh
 /CyberPatriot-Linux-Tools/media-detector.sh
-/CyberPatriot-Linux-Tools/recon.sh
 
 /CyberPatriot-Linux-Tools/password-policy.sh
 /CyberPatriot-Linux-Tools/usersec.sh
-/CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
+
 /CyberPatriot-Linux-Tools/file-perms.sh
+
 /CyberPatriot-Linux-Tools/apparmor.sh
 /CyberPatriot-Linux-Tools/updates.sh
+
 /CyberPatriot-Linux-Tools/recon.sh
+/CyberPatriot-Linux-Tools/backdoors-rootkits-detector.sh
 
 cp -f /CyberPatriot-Linux-Tools/secure-configurations/etc/sysctl.conf /etc/sysctl.conf
 sysctl -p
@@ -116,7 +118,7 @@ echo "---------------------" >> /CyberPatriot-Linux-Tools/results
 echo "CHECK FOR SHELLSHOCK VULNERABILITY!" >> /CyberPatriot-Linux-Tools/results
 echo "----------------------" >> /CyberPatriot-Linux-Tools/results
 
-env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable" >> results.txt
+env VAR='() { :;}; echo Bash is vulnerable!' bash -c "echo Bash is not vulnerable" >> /CyberPatriot-Linux-Tools/results
 
 ################################################################################################
 
